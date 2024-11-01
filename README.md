@@ -1,19 +1,13 @@
----
-title: "Introduction to Basic R"
-format:
-  html: default 
-  md: 
-    output-file: "README.md"
-editor: visual
----
+# Introduction to Basic R
+
 
 # Basic R
 
 ## Object Oriented Programming
 
-### Assigning Objects 
+### Assigning Objects
 
-## Work-Space 
+## Work-Space
 
 ## Libraries
 
@@ -25,6 +19,6 @@ editor: visual
 
 ## Data Frames
 
-## The Accessor '\$'
+## The Accessor ‘$’
 
 ### Vectors: numerics, characters, and logical
