@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Introduction to Basic R
 
 
@@ -23,6 +22,3 @@
 ## The Accessor ‘$’
 
 ### Vectors: numerics, characters, and logical
-=======
-testing.
->>>>>>> c1eb0dcd1e15055ec2be3e9ca1fc013a22083391
