@@ -26,10 +26,17 @@ flowchart TD
 -   JavaScript
 -   Ruby
 
-# R: Classes and methods
+##  R: Classes and methods
 - In R all software entities are objects
 - Each object belong to a class
 - A class is a general scheme for objects:
 from a general standpoint it represents an “idea”,
 i.e. the general structure of a given object
 - Objects are realizations or instances of a class.
+
+
+## Example: Creating a simple class in R
+```{mermaid}
+flowchart LR
+    Object[Name of Object] --> Container[What object contains realy]
+```
