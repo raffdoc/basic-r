@@ -1,0 +1,17 @@
+---
+title: "Introduction to Basic R"
+author: 'Rafik Margaryan, MD, PhD'
+format: revealjs
+---
+
+## OO programming in R: classes and methods
+
+```{mermaid}
+flowchart TD
+    A["Classes: ideas of objects"] --> B["Objects"]
+    B --> C["Methods: functions that belong to a class"]
+    C --> D["Inheritance: classes can inherit from other classes"]
+    D --> E["Polymorphism: methods can have different behavior depending on the class"]
+    E --> F["Encapsulation: data and methods are bundled together"]
+    F --> A
+```
