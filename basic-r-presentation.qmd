@@ -44,9 +44,3 @@ All software is open-source and free.
 ```{.r code-line-numbers="6-8"}
 print("Hello, World!")
 ```
-
-## Interaction with R Prompt
-
-```{.r code-line-numbers="6-8"}
-readline("What's your name? ")
-```

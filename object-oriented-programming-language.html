@@ -148,20 +148,14 @@ Rafik Margaryan, MD, PhD
 <div>
 <p></p><figure class=""><p></p>
 <div>
-<pre class="mermaid mermaid-js">%% Configuration
-%%   - direction: LR = left to right; TB = top to bottom
-graph LR
-    A[Start] --&gt; B{Read symbol};
-    B -- a --&gt; C[Write a, Move Right];
-    C --&gt; D{Read symbol};
-    D -- b --&gt; E[Write b, Move Left];
-    E --&gt; B;
-    D -- end --&gt; F[Accept];
-    B -- end --&gt; G[Reject];
-    classDef internal fill:#f9f,stroke:#333,stroke-width:2px
-    classDef end fill:#ccf,stroke:#333,stroke-width:2px
-    class A,B,C,D,E internal;
-    class F,G end;
+<pre class="mermaid mermaid-js">graph LR
+    A[Start] --&gt; B(Read);
+    B --&gt; C{Is it 1?};
+    C -- Yes --&gt; D[Write 0, Move Right];
+    C -- No --&gt; E[Write 1, Move Right];
+    D --&gt; F(Halt);
+    E --&gt; F
+    
 </pre>
 </div>
 <p></p></figure><p></p>
