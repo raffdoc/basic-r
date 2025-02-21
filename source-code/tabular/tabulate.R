@@ -9,7 +9,7 @@ votes <- read.table(
 View(votes)
 # adding header 
 votes <- read.table(
-  "votes.csv",
+  "data/votes.csv",
   sep = ",",
   header = TRUE
 )
