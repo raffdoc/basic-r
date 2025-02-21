@@ -11,9 +11,17 @@ editor: visual
 
 ## Object Oriented Programming
 
-### Assigning Objects 
+presentations
 
-## Work-Space 
+### Basic R prompts
+
+-   basic r
+
+-   tabular
+
+-   voters
+
+## Work-Space
 
 ## Libraries
 
