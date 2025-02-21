@@ -3,7 +3,7 @@ votes <- read.table("data/votes.csv")
 View(votes)
 # some other options
 votes <- read.table(
-  "votes.csv",
+  "data/votes.csv",
   sep = ","
 )
 View(votes)
