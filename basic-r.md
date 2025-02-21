@@ -1,12 +1,5 @@
----
-title: "Introduction to Basic R"
-author: "Rafik Margaryan, MD, PhD"
-format:
-  html: default 
-  md: 
-    output-file: "basic-r.md"
-editor: visual
----
+# Introduction to Basic R
+Rafik Margaryan, MD, PhD
 
 # Basic R
 
@@ -36,6 +29,6 @@ presentations
 
 ## Data Frames
 
-## The Accessor '\$'
+## The Accessor ‘$’
 
 ### Vectors: numeric, characters, and logical
