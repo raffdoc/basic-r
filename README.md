@@ -5,7 +5,17 @@
 
 ## Object Oriented Programming
 
-### Assigning Objects
+presentations
+
+### Basic R prompts
+
+-   basic r (interact and print)
+
+-   tabular (import tabular data)
+
+-   voters (big file from remote locations)
+
+-   
 
 ## Work-Space
 

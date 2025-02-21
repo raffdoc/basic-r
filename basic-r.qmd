@@ -1,5 +1,6 @@
 ---
 title: "Introduction to Basic R"
+author: "Rafik Margaryan, MD, PhD"
 format:
   html: default 
   md: 
@@ -37,4 +38,4 @@ presentations
 
 ## The Accessor '\$'
 
-### Vectors: numerics, characters, and logical
+### Vectors: numeric, characters, and logical
