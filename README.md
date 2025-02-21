@@ -1,5 +1,5 @@
 # Introduction to Basic R
-
+Rafik Margaryan, MD, PhD
 
 # Basic R
 
@@ -31,4 +31,4 @@ presentations
 
 ## The Accessor ‘$’
 
-### Vectors: numerics, characters, and logical
+### Vectors: numeric, characters, and logical
