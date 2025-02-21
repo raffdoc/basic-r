@@ -3,6 +3,23 @@ title: "Object Oriented Programming Language"
 author: 'Rafik Margaryan, MD, PhD'
 format: revealjs
 ---
+## Turing Machine
+```{mermaid}
+%% Configuration
+%%   - direction: LR = left to right; TB = top to bottom
+graph LR
+    A[Start] --> B{Read symbol};
+    B -- a --> C[Write a, Move Right];
+    C --> D{Read symbol};
+    D -- b --> E[Write b, Move Left];
+    E --> B;
+    D -- end --> F[Accept];
+    B -- end --> G[Reject];
+    classDef internal fill:#f9f,stroke:#333,stroke-width:2px
+    classDef end fill:#ccf,stroke:#333,stroke-width:2px
+    class A,B,C,D,E internal;
+    class F,G end;
+```
 
 ## OO programming in R: classes and methods
 

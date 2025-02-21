@@ -3,6 +3,8 @@ title: "Introduction to Basic R"
 author: 'Rafik Margaryan, MD, PhD'
 format: revealjs
 ---
+
+
 ## Concepts
 - Give a man a fish, and you feed him for a day. Teach a man to fish, and you feed him for a lifetime. - Maimonides
 - 授人以鱼，可以养活他一天。授人以渔，可以养活他一生。
