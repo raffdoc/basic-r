@@ -5,7 +5,7 @@ Rafik Margaryan, MD, PhD
 
 ## Object Oriented Programming
 
-[Object Oriented Programming](object-oriented-programming-language.html)
+Object oriented 
 
 ### Basic R prompts
 
