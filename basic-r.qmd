@@ -15,11 +15,13 @@ presentations
 
 ### Basic R prompts
 
--   basic r
+-   basic r (interact and print)
 
--   tabular
+-   tabular (import tabular data)
 
--   voters
+-   voters (big file from remote locations)
+
+-   
 
 ## Work-Space
 
