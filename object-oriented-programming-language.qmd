@@ -5,6 +5,8 @@ format: revealjs
 ---
 ## Turing Machine Simple
 
+![](/images/Turing_Machine_Model_Davey_2012.jpg)
+
 ```{mermaid}
 graph LR
     A[Start] --> B(Read);
@@ -50,6 +52,9 @@ i.e. the general structure of a given object
 ## Example: Creating a simple class in R
 ```{mermaid}
 flowchart LR
-    Object[Name of Object] --> Container[What object contains realy]
+    Object[Name of Object] --> Container[What object contains]
 ```
 
+```{.r code-line-numbers="6-8"}
+object <- c(1, 2, 3, 4, 5)
+```

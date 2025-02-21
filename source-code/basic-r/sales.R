@@ -34,3 +34,4 @@ View(sales)
 # Demonstrates flagging sales as high value
 
 sales$value <- ifelse(sales$sale_amount > 100, "High Value", "Regular")
+View(sales)
