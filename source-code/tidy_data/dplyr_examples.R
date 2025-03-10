@@ -1,6 +1,7 @@
 # Demonstrates calculating average GPA by major
-
-students <- read.csv("students.csv")
+library(tidyr)
+library(dplyr)
+students <- read.csv("data/students.csv")
 
 students <- pivot_wider(
   students,
@@ -14,3 +15,6 @@ students$GPA <- as.numeric(students$GPA)
 students |>
   group_by(major) |>
   summarize(GPA = mean(GPA))
+
+library(readr)
+health <- read_csv("data/healthcare_dataset.csv")
