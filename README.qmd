@@ -14,8 +14,16 @@ A simple course created to help our young fellows to embrace the R programming l
 
 # Basic R
 
-## [basic r presentation](basic-r-presentation.html)
+- hello world example
+- tabular data
+- summarising data
+- plotting data
+- summary tables
+- basic statistics
 
-## [basic r code](/workspaces/basic-r/source-code/basic-r/)
+# Tidy data
 
-# Intermediate R
+- Tidiverse
+- Dplyr
+- ggplot
+- gtsummary
