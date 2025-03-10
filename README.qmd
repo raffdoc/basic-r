@@ -14,16 +14,16 @@ A simple course created to help our young fellows to embrace the R programming l
 
 # Basic R
 
-- hello world example
-- tabular data
-- summarising data
-- plotting data
-- summary tables
-- basic statistics
+-   hello world example
+-   tabular data
+-   summarising data
+-   plotting data
+-   summary tables
+-   basic statistics
 
 # Tidy data
 
-- Tidiverse
-- Dplyr
-- ggplot
-- gtsummary
+-   Tidiverse
+-   Dplyr
+-   ggplot
+-   gtsummary
