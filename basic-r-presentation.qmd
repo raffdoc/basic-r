@@ -56,3 +56,43 @@ df <- cars()
 ::: aside
 Some code is borrowed from cs50 R https://cs50.harvard.edu/r/2024/
 :::
+
+## R object types
+
+- numeric
+- character
+- vector 
+- factor
+- matrix 
+- array
+- list
+- data frame
+
+## Numeric 
+
+
+
+```{.r code-line-numbers="6-8"}
+x <- 5
+class(x)
+is.numeric(x)
+```
+
+## Character 
+
+```{.r code-line-numbers="6-8"}
+car <- "elevated blood pressure"
+class(car)
+
+```
+
+## Numeric Vector 
+
+```{.r code-line-numbers="6-8"}
+v <- c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+class(v)
+
+```
+
+![](images/Vectors-in-R.jpg){fig-align="right"} 
+
