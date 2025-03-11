@@ -11,6 +11,7 @@
   <meta name="generator" content="quarto-1.4.551">
 
   <meta name="author" content="Rafik Margaryan, MD, PhD">
+  <meta name="dcterms.date" content="2026-05-03">
   <title>Introduction to Basic R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -398,12 +399,21 @@
 <div class="quarto-title-author-name">
 Rafik Margaryan, MD, PhD 
 </div>
-</div>
+        <p class="quarto-title-affiliation">
+            Ospedale Del Cuore Fondazione Monasterio
+          </p>
+    </div>
 </div>
 
+  <p class="date">2026-05-03</p>
 </section>
-<section id="concepts" class="slide level2">
-<h2>Concepts</h2>
+<section>
+<section id="concepts" class="title-slide slide level1 center">
+<h1>Concepts</h1>
+
+</section>
+<section id="phylosophy" class="slide level2">
+<h2>Phylosophy</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="/images/Rlogo.png" class="quarto-figure quarto-figure-center"></p>
@@ -457,7 +467,12 @@ Rafik Margaryan, MD, PhD
 
 <aside><div>
 <p>All software is open-source and free tu use and to change.</p>
-</div></aside></section>
+</div></aside></section></section>
+<section>
+<section id="programming-language-stracture" class="title-slide slide level1 center">
+<h1>Programming Language Stracture</h1>
+
+</section>
 <section id="r-code-syntax" class="slide level2">
 <h2>R code syntax</h2>
 <div class="sourceCode" id="cb1" data-code-line-numbers="6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">print</span>(<span class="st">"Hello, World!"</span>)</span>
@@ -497,12 +512,61 @@ Rafik Margaryan, MD, PhD
 <div class="sourceCode" id="cb4" data-code-line-numbers="6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)</span>
 <span id="cb4-2"><a href=""></a><span class="fu">class</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="images/Vectors-in-R.jpg" class="quarto-figure quarto-figure-right r-stretch"><div class="quarto-auto-generated-content">
+<img data-src="images/Vectors-in-R.jpg" class="quarto-figure quarto-figure-right r-stretch"></section>
+<section id="character-vector" class="slide level2">
+<h2>Character Vector</h2>
+<div class="sourceCode" id="cb5" data-code-line-numbers="6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>car_v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"elevated"</span>, <span class="st">"blood"</span>, <span class="st">"pressure"</span>)</span>
+<span id="cb5-2"><a href=""></a><span class="fu">class</span>(car_v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="factors-unordered" class="slide level2">
+<h2>Factors Unordered</h2>
+<div class="sourceCode" id="cb6" data-code-line-numbers="6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"underweight"</span>, <span class="st">"underweight"</span>, <span class="st">"normal"</span>, <span class="st">"overweight"</span>, <span class="st">"normal"</span>))</span>
+<span id="cb6-2"><a href=""></a><span class="fu">levels</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="factor-ordered-by-level" class="slide level2">
+<h2>Factor Ordered by level</h2>
+<div class="sourceCode" id="cb7" data-code-line-numbers="6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># Enter ORIGINAL values in levels</span></span>
+<span id="cb7-2"><a href=""></a><span class="co"># Enter the NEW level labels in labels</span></span>
+<span id="cb7-3"><a href=""></a><span class="co"># Make sure the orderings of levels and labels correspond</span></span>
+<span id="cb7-4"><a href=""></a></span>
+<span id="cb7-5"><a href=""></a></span>
+<span id="cb7-6"><a href=""></a>y <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"underweight"</span>, <span class="st">"underweight"</span>, <span class="st">"normal"</span>, <span class="st">"overweight"</span>, <span class="st">"normal"</span>),</span>
+<span id="cb7-7"><a href=""></a>            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"underweight"</span>, <span class="st">"normal"</span>, <span class="st">"overweight"</span>),</span>
+<span id="cb7-8"><a href=""></a>            <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Underweight"</span>, <span class="st">"Normal"</span>, <span class="st">"Overweight"</span>))</span>
+<span id="cb7-9"><a href=""></a><span class="fu">levels</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="matrix" class="slide level2">
+<h2>Matrix</h2>
+<div class="sourceCode" id="cb8" data-code-line-numbers="6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb8-2"><a href=""></a>mat </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="lists" class="slide level2">
+<h2>Lists</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"5"</span>, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), y) <span class="co"># I put y, an object we created earlier, in this list</span></span>
+<span id="cb9-2"><a href=""></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>hold different types</li>
+<li>different lengths</li>
+</ul>
+</section>
+<section id="dataframes" class="slide level2">
+<h2>DataFrames</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">outcome =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>),</span>
+<span id="cb10-2"><a href=""></a>                <span class="at">exposure =</span> <span class="fu">c</span>(<span class="st">"yes"</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>, <span class="st">"no"</span>),</span>
+<span id="cb10-3"><a href=""></a>                <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">55</span>, <span class="dv">39</span>, <span class="dv">18</span>))</span>
+<span id="cb10-4"><a href=""></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>hold different types</li>
+<li>but same length</li>
+<li>columns have names</li>
+<li>row have indices <img data-src="images/dataframe.png"></li>
+</ul>
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -659,7 +723,7 @@ Rafik Margaryan, MD, PhD
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'fade',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',

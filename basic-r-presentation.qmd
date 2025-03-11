@@ -1,11 +1,22 @@
 ---
 title: "Introduction to Basic R"
 author: 'Rafik Margaryan, MD, PhD'
+date: 17-03-2025
+institute: Ospedale Del Cuore Fondazione Monasterio
 format: revealjs
+execute:
+  eval: true
+  echo: true
+  warning: false
+  output: true
+  include: true
+transition: fade
+show-slide-number: all
 ---
 
 
-## Concepts
+# Concepts
+## Phylosophy
 
 ![](/images/Rlogo.png){fig-align="center"}
 
@@ -44,6 +55,7 @@ All software is open-source and free.
 All software is open-source and free tu use and to change.
 :::
 
+# Programming Language Stracture
 ## R code syntax
 
 ```{.r code-line-numbers="6-8"}
@@ -95,4 +107,72 @@ class(v)
 ```
 
 ![](images/Vectors-in-R.jpg){fig-align="right"} 
+
+
+## Character Vector
+
+```{.r code-line-numbers="6-8"}
+car_v <- c("elevated", "blood", "pressure")
+class(car_v)
+
+```
+
+## Factors Unordered
+
+
+```{.r code-line-numbers="6-8"}
+f <- factor(c("underweight", "underweight", "normal", "overweight", "normal"))
+levels(f)
+
+```
+
+
+## Factor Ordered by level 
+
+```{.r code-line-numbers="6-8"}
+# Enter ORIGINAL values in levels
+# Enter the NEW level labels in labels
+# Make sure the orderings of levels and labels correspond
+
+
+y <- factor(c("underweight", "underweight", "normal", "overweight", "normal"),
+            levels = c("underweight", "normal", "overweight"),
+            labels = c("Underweight", "Normal", "Overweight"))
+levels(y)
+```
+
+
+## Matrix
+
+```{.r code-line-numbers="6-8"}
+mat <- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 3)
+mat 
+
+```
+
+## Lists
+
+ 
+```{.r}
+x <- list("5", c(1,2,3), y) # I put y, an object we created earlier, in this list
+x
+```
+
+- hold different types
+- different lengths 
+
+## DataFrames
+
+```{.r}
+x <- data.frame(outcome = c(1,0,1,1),
+                exposure = c("yes", "yes", "no", "no"),
+                age = c(24, 55, 39, 18))
+x
+```
+
+- hold different types
+- but same length
+- columns have names
+- row have indices
+![](images/dataframe.png)
 
