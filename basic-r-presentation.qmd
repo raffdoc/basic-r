@@ -58,11 +58,11 @@ All software is open-source and free tu use and to change.
 
 ## R code syntax
 
-``` {.r code-line-numbers="6-8"}
+``` {r }
 print("Hello, World!")
-library(ggplt2)
-
-df <- cars()
+library(ggplot2)
+library(dplyr)
+as_tibble(cars)
 ```
 
 ::: aside
@@ -82,7 +82,7 @@ Some code is borrowed from cs50 R https://cs50.harvard.edu/r/2024/
 
 ## Numeric
 
-``` {.r code-line-numbers="6-8"}
+``` {r }
 x <- 5
 class(x)
 is.numeric(x)
@@ -90,14 +90,14 @@ is.numeric(x)
 
 ## Character
 
-``` {.r code-line-numbers="6-8"}
+``` {r }
 car <- "elevated blood pressure"
 class(car)
 ```
 
 ## Numeric Vector
 
-``` {.r code-line-numbers="6-8"}
+``` {r }
 v <- c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
 class(v)
 ```
@@ -106,21 +106,21 @@ class(v)
 
 ## Character Vector
 
-``` {.r code-line-numbers="6-8"}
+``` {r }
 car_v <- c("elevated", "blood", "pressure")
 class(car_v)
 ```
 
 ## Factors Unordered
 
-``` {.r code-line-numbers="6-8"}
+``` {r }
 f <- factor(c("underweight", "underweight", "normal", "overweight", "normal"))
 levels(f)
 ```
 
 ## Factor Ordered by level
 
-``` {.r code-line-numbers="6-8"}
+``` {r }
 # Enter ORIGINAL values in levels
 # Enter the NEW level labels in labels
 # Make sure the orderings of levels and labels correspond
@@ -134,15 +134,17 @@ levels(y)
 
 ## Matrix
 
-``` {.r code-line-numbers="6-8"}
+``` {r}
 mat <- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 3)
 mat 
 ```
 
 ## Lists
 
-``` r
-x <- list("5", c(1,2,3), y) # I put y, an object we created earlier, in this list
+```{r}
+y <- "my dog"
+z <- 1:10
+x <- list("5", c(1,2,3), y, z) # I put y, an object we created earlier, in this list
 x
 ```
 
@@ -151,7 +153,7 @@ x
 
 ## DataFrames
 
-``` r
+```{r}
 x <- data.frame(outcome = c(1,0,1,1),
                 exposure = c("yes", "yes", "no", "no"),
                 age = c(24, 55, 39, 18))

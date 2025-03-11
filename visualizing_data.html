@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="basic-r-presentation_files/libs/clipboard/clipboard.min.js"></script>
-<script src="basic-r-presentation_files/libs/quarto-html/tabby.min.js"></script>
-<script src="basic-r-presentation_files/libs/quarto-html/popper.min.js"></script>
-<script src="basic-r-presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="basic-r-presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="basic-r-presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="basic-r-presentation_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="basic-r-presentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="visualizing_data_files/libs/clipboard/clipboard.min.js"></script>
+<script src="visualizing_data_files/libs/quarto-html/tabby.min.js"></script>
+<script src="visualizing_data_files/libs/quarto-html/popper.min.js"></script>
+<script src="visualizing_data_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="visualizing_data_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="visualizing_data_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="visualizing_data_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="visualizing_data_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.551">
 
   <meta name="author" content="Rafik Margaryan, MD, PhD">
-  <meta name="dcterms.date" content="2026-05-03">
-  <title>Introduction to Basic R</title>
+  <meta name="dcterms.date" content="2025-03-17">
+  <title>Visualizing Data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="basic-r-presentation_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="basic-r-presentation_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="visualizing_data_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="visualizing_data_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -96,11 +96,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="basic-r-presentation_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="basic-r-presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="basic-r-presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="basic-r-presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="basic-r-presentation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="visualizing_data_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="visualizing_data_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="visualizing_data_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="visualizing_data_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="visualizing_data_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -392,7 +392,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Introduction to Basic R</h1>
+  <h1 class="title">Visualizing Data</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -405,386 +405,159 @@ Rafik Margaryan, MD, PhD
     </div>
 </div>
 
-  <p class="date">2026-05-03</p>
+  <p class="date">2025-03-17</p>
 </section>
 <section>
-<section id="concepts" class="title-slide slide level1 center">
-<h1>Concepts</h1>
+<section id="ggplot2" class="title-slide slide level1 center">
+<h1>ggplot2</h1>
 
 </section>
-<section id="phylosophy" class="slide level2">
-<h2>Phylosophy</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="/images/Rlogo.png" class="quarto-figure quarto-figure-center"></p>
-</figure>
-</div>
-<ul>
-<li>Give a man a fish, and you feed him for a day. Teach a man to fish, and you feed him for a lifetime. - Maimonides</li>
-<li>授人以鱼，可以养活他一天。授人以渔，可以养活他一生。</li>
-</ul>
-
-<aside class="notes">
-<p>Translate it to chinese:</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-<aside><div>
-<p>All software is open-source and free.</p>
-</div></aside></section>
-<section id="what-is-r" class="slide level2">
-<h2>What is R?</h2>
-<ul>
-<li>R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.</li>
-<li>The R programming language was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand.</li>
-</ul>
-<div class="quarto-figure quarto-figure-right">
-<figure>
-<p><img data-src="images/rgrh.jpeg" class="quarto-figure quarto-figure-right"></p>
-</figure>
-</div>
-
-<aside><div>
-<p>All software is open-source and free.</p>
-</div></aside></section>
-<section id="software-components" class="slide level2">
-<h2>Software Components</h2>
-<ul>
-<li>R</li>
-<li>RStudio</li>
-<li>Prosit (VS Code)</li>
-<li>On line services (free)</li>
-<li>R packages</li>
-</ul>
-
-<aside><div>
-<p>All software is open-source and free tu use and to change.</p>
-</div></aside></section></section>
-<section>
-<section id="programming-language-stracture" class="title-slide slide level1 center">
-<h1>Programming Language Stracture</h1>
-
-</section>
-<section id="r-code-syntax" class="slide level2">
-<h2>R code syntax</h2>
+<section id="simple-example" class="slide level2">
+<h2>Simple example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">print</span>(<span class="st">"Hello, World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Hello, World!"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-2"><a href=""></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb3-3"><a href=""></a><span class="fu">as_tibble</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 50 × 2
-   speed  dist
-   &lt;dbl&gt; &lt;dbl&gt;
- 1     4     2
- 2     4    10
- 3     7     4
- 4     7    22
- 5     8    16
- 6     9    10
- 7    10    18
- 8    10    26
- 9    10    34
-10    11    17
-# ℹ 40 more rows</code></pre>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
+<span id="cb1-3"><a href=""></a></span>
+<span id="cb1-4"><a href=""></a><span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<aside><div>
-<p>Some code is borrowed from cs50 R https://cs50.harvard.edu/r/2024/</p>
-</div></aside></section>
-<section id="r-object-types" class="slide level2">
-<h2>R object types</h2>
-<ul>
-<li>numeric</li>
-<li>character</li>
-<li>vector</li>
-<li>factor</li>
-<li>matrix</li>
-<li>array</li>
-<li>list</li>
-<li>data frame</li>
-</ul>
+</div>
+<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"><p>Nothing happens!</p>
 </section>
-<section id="numeric" class="slide level2">
-<h2>Numeric</h2>
+<section id="feeding-data-to-ggplot-function" class="slide level2">
+<h2>Feeding data to ggplot function</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb5-2"><a href=""></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a><span class="fu">ggplot</span>(votes) <span class="sc">+</span> </span>
+<span id="cb2-4"><a href=""></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">is.numeric</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
+<p>Produces an error: <code>! Errore in geom_col(): geom_col() requires the following missing aesthetics:   x and y.</code></p>
 </section>
-<section id="character" class="slide level2">
-<h2>Character</h2>
+<section id="mapping-variables" class="slide level2">
+<h2>Mapping variables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>car <span class="ot">&lt;-</span> <span class="st">"elevated blood pressure"</span></span>
-<span id="cb9-2"><a href=""></a><span class="fu">class</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "character"</code></pre>
-</div>
-</div>
-</section>
-<section id="numeric-vector" class="slide level2">
-<h2>Numeric Vector</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)</span>
-<span id="cb11-2"><a href=""></a><span class="fu">class</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Add x and y aesthetics</span></span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
+<span id="cb3-4"><a href=""></a></span>
+<span id="cb3-5"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb3-6"><a href=""></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="images/Vectors-in-R.jpg" class="quarto-figure quarto-figure-right r-stretch"></section>
-<section id="character-vector" class="slide level2">
-<h2>Character Vector</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>car_v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"elevated"</span>, <span class="st">"blood"</span>, <span class="st">"pressure"</span>)</span>
-<span id="cb13-2"><a href=""></a><span class="fu">class</span>(car_v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "character"</code></pre>
 </div>
-</div>
+<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"><p>And voila!</p>
 </section>
-<section id="factors-unordered" class="slide level2">
-<h2>Factors Unordered</h2>
+<section id="reshaping-y-limits" class="slide level2">
+<h2>Reshaping y limits</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"underweight"</span>, <span class="st">"underweight"</span>, <span class="st">"normal"</span>, <span class="st">"overweight"</span>, <span class="st">"normal"</span>))</span>
-<span id="cb15-2"><a href=""></a><span class="fu">levels</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "normal"      "overweight"  "underweight"</code></pre>
-</div>
-</div>
-</section>
-<section id="factor-ordered-by-level" class="slide level2">
-<h2>Factor Ordered by level</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># Enter ORIGINAL values in levels</span></span>
-<span id="cb17-2"><a href=""></a><span class="co"># Enter the NEW level labels in labels</span></span>
-<span id="cb17-3"><a href=""></a><span class="co"># Make sure the orderings of levels and labels correspond</span></span>
-<span id="cb17-4"><a href=""></a></span>
-<span id="cb17-5"><a href=""></a></span>
-<span id="cb17-6"><a href=""></a>y <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"underweight"</span>, <span class="st">"underweight"</span>, <span class="st">"normal"</span>, <span class="st">"overweight"</span>, <span class="st">"normal"</span>),</span>
-<span id="cb17-7"><a href=""></a>            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"underweight"</span>, <span class="st">"normal"</span>, <span class="st">"overweight"</span>),</span>
-<span id="cb17-8"><a href=""></a>            <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Underweight"</span>, <span class="st">"Normal"</span>, <span class="st">"Overweight"</span>))</span>
-<span id="cb17-9"><a href=""></a><span class="fu">levels</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Underweight" "Normal"      "Overweight" </code></pre>
-</div>
-</div>
-</section>
-<section id="matrix" class="slide level2">
-<h2>Matrix</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb19-2"><a href=""></a>mat </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2] [,3]
-[1,]    1    3    5
-[2,]    2    4    6</code></pre>
-</div>
-</div>
-</section>
-<section id="lists" class="slide level2">
-<h2>Lists</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>y <span class="ot">&lt;-</span> <span class="st">"my dog"</span></span>
-<span id="cb21-2"><a href=""></a>z <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb21-3"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"5"</span>, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), y, z) <span class="co"># I put y, an object we created earlier, in this list</span></span>
-<span id="cb21-4"><a href=""></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[1] "5"
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb4-3"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-[[2]]
-[1] 1 2 3
-
-[[3]]
-[1] "my dog"
-
-[[4]]
- [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
-</div>
-<ul>
-<li>hold different types</li>
-<li>different lengths</li>
-</ul>
-</section>
-<section id="dataframes" class="slide level2">
-<h2>DataFrames</h2>
+<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="renaming-labs" class="slide level2">
+<h2>Renaming labs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">outcome =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>),</span>
-<span id="cb23-2"><a href=""></a>                <span class="at">exposure =</span> <span class="fu">c</span>(<span class="st">"yes"</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>, <span class="st">"no"</span>),</span>
-<span id="cb23-3"><a href=""></a>                <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">55</span>, <span class="dv">39</span>, <span class="dv">18</span>))</span>
-<span id="cb23-4"><a href=""></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  outcome exposure age
-1       1      yes  24
-2       0      yes  55
-3       1       no  39
-4       1       no  18</code></pre>
-</div>
-</div>
-<ul>
-<li>hold different types</li>
-<li>but same length</li>
-<li>columns have names</li>
-<li>row have indices <img data-src="images/dataframe.png"></li>
-</ul>
-</section></section>
-<section>
-<section id="operators-in-r" class="title-slide slide level1 center">
-<h1>Operators in R</h1>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
+<span id="cb5-2"><a href=""></a></span>
+<span id="cb5-3"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb5-6"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-7"><a href=""></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb5-8"><a href=""></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb5-9"><a href=""></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb5-10"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</section>
-<section id="arithmetic" class="slide level2">
-<h2>Arithmetic</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>+</code></td>
-<td>addition</td>
-</tr>
-<tr class="even">
-<td><code>-</code></td>
-<td>subtraction</td>
-</tr>
-<tr class="odd">
-<td><code>*</code></td>
-<td>multiplication</td>
-</tr>
-<tr class="even">
-<td><code>/</code></td>
-<td>division</td>
-</tr>
-<tr class="odd">
-<td><code>^</code></td>
-<td>exponent</td>
-</tr>
-<tr class="even">
-<td><code>%%</code></td>
-<td>modulus</td>
-</tr>
-<tr class="odd">
-<td><code>%/%</code></td>
-<td>integer division</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="relational" class="slide level2">
-<h2>Relational</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>&lt;</code></td>
-<td>less</td>
-</tr>
-<tr class="even">
-<td><code>&gt;</code></td>
-<td>more</td>
-</tr>
-<tr class="odd">
-<td><code>==</code></td>
-<td>equal</td>
-</tr>
-<tr class="even">
-<td><code>&lt;=</code></td>
-<td>equal or less</td>
-</tr>
-<tr class="odd">
-<td><code>&gt;=</code></td>
-<td>equal or more</td>
-</tr>
-<tr class="even">
-<td><code>!=</code></td>
-<td>not equal</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="logical" class="slide level2">
-<h2>Logical</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>&amp;</code></td>
-<td>and</td>
-</tr>
-<tr class="even">
-<td><code>|</code></td>
-<td>or</td>
-</tr>
-<tr class="odd">
-<td><code>!</code></td>
-<td>logical not</td>
-</tr>
-<tr class="even">
-<td><code>&amp;&amp;</code></td>
-<td>logical and</td>
-</tr>
-<tr class="odd">
-<td><code>||</code></td>
-<td>logical or</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="assignment-operator" class="slide level2">
-<h2>Assignment operator</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>&lt;-, &lt;&lt;-, =</code></td>
-<td>left assignment</td>
-</tr>
-<tr class="even">
-<td><code>-&gt;, -&gt;&gt;</code></td>
-<td>right assignment</td>
-</tr>
-</tbody>
-</table>
+</div>
+<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="add-fill-color" class="slide level2">
+<h2>Add fill color</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Add fill aesthetic mapping for geom_col</span></span>
+<span id="cb6-2"><a href=""></a></span>
+<span id="cb6-3"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
+<span id="cb6-4"><a href=""></a></span>
+<span id="cb6-5"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb6-6"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb6-8"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-9"><a href=""></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb6-10"><a href=""></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb6-11"><a href=""></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb6-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="for-colour-blindess-people" class="slide level2">
+<h2>For colour blindess people</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># Use viridis scale to design for color blindness</span></span>
+<span id="cb7-2"><a href=""></a></span>
+<span id="cb7-3"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
+<span id="cb7-4"><a href=""></a></span>
+<span id="cb7-5"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href=""></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="st">"Candidate"</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb7-9"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-10"><a href=""></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb7-11"><a href=""></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb7-12"><a href=""></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb7-13"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<section id="adding-theme-to-the-plot" class="slide level2">
+<h2>Adding theme to the plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># Adjust ggplot theme</span></span>
+<span id="cb8-2"><a href=""></a></span>
+<span id="cb8-3"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
+<span id="cb8-4"><a href=""></a></span>
+<span id="cb8-5"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
+<span id="cb8-7"><a href=""></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="st">"Candidate"</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb8-9"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-10"><a href=""></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb8-11"><a href=""></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb8-12"><a href=""></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb8-13"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb8-14"><a href=""></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="saving-file" class="slide level2">
+<h2>Saving file</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># Save file</span></span>
+<span id="cb9-2"><a href=""></a></span>
+<span id="cb9-3"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
+<span id="cb9-4"><a href=""></a></span>
+<span id="cb9-5"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
+<span id="cb9-7"><a href=""></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="st">"Candidate"</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb9-9"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-10"><a href=""></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb9-11"><a href=""></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb9-12"><a href=""></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb9-13"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb9-14"><a href=""></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb9-15"><a href=""></a></span>
+<span id="cb9-16"><a href=""></a><span class="fu">ggsave</span>(</span>
+<span id="cb9-17"><a href=""></a>  <span class="st">"images/votes.png"</span>,</span>
+<span id="cb9-18"><a href=""></a>  <span class="at">plot =</span> p,</span>
+<span id="cb9-19"><a href=""></a>  <span class="at">width =</span> <span class="dv">1200</span>,</span>
+<span id="cb9-20"><a href=""></a>  <span class="at">height =</span> <span class="dv">900</span>,</span>
+<span id="cb9-21"><a href=""></a>  <span class="at">units =</span> <span class="st">"px"</span></span>
+<span id="cb9-22"><a href=""></a>)</span>
+<span id="cb9-23"><a href=""></a><span class="fu">print</span>(<span class="st">'Done...!'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Done...!"</code></pre>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
@@ -795,19 +568,19 @@ Rafik Margaryan, MD, PhD
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="basic-r-presentation_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="basic-r-presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="basic-r-presentation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="basic-r-presentation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="basic-r-presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="basic-r-presentation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="basic-r-presentation_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="basic-r-presentation_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="basic-r-presentation_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="basic-r-presentation_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="visualizing_data_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

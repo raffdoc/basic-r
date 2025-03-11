@@ -1,0 +1,158 @@
+---
+title: "Visualizing Data"
+author: 'Rafik Margaryan, MD, PhD'
+date: 2025-03-17
+institute: Ospedale Del Cuore Fondazione Monasterio
+format: revealjs
+execute:
+  eval: true
+  echo: true
+  warning: false
+  output: true
+  include: true
+transition: fade
+show-slide-number: all
+---
+
+# ggplot2
+
+## Simple example
+
+```{r}
+library(ggplot2)
+votes <- read.csv("data/votes_gg.csv")
+
+ggplot()
+
+```
+Nothing happens! 
+
+## Feeding data to ggplot function
+
+```{r eval=FALSE}
+votes <- read.csv("data/votes_gg.csv")
+
+ggplot(votes) + 
+  geom_col()
+
+```
+Produces an error: 
+`! Errore in geom_col(): geom_col() requires the following missing aesthetics:   x and y.`
+
+## Mapping variables
+
+```{r }
+# Add x and y aesthetics
+
+votes <- read.csv("data/votes_gg.csv")
+
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col()
+```
+And voila!
+
+## Reshaping y limits
+
+```{r}
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col() +
+  scale_y_continuous(limits = c(0, 250))
+```
+
+## Renaming labs
+
+```{r}
+votes <- read.csv("data/votes_gg.csv")
+
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col() +
+  scale_y_continuous(limits = c(0, 250)) +
+  labs(
+    x = "Candidate",
+    y = "Votes",
+    title = "Election Results"
+  )
+```
+
+## Add fill color 
+```{r}
+# Add fill aesthetic mapping for geom_col
+
+votes <- read.csv("data/votes_gg.csv")
+
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col(aes(fill = candidate)) +
+  scale_y_continuous(limits = c(0, 250)) +
+  labs(
+    x = "Candidate",
+    y = "Votes",
+    title = "Election Results"
+  )
+
+```
+
+## For colour blindess people
+
+```{r}
+# Use viridis scale to design for color blindness
+
+votes <- read.csv("data/votes_gg.csv")
+
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col(aes(fill = candidate)) +
+  scale_fill_viridis_d("Candidate") +
+  scale_y_continuous(limits = c(0, 250)) +
+  labs(
+    x = "Candidate",
+    y = "Votes",
+    title = "Election Results"
+  )
+```
+
+## Adding theme to the plot
+
+```{r}
+# Adjust ggplot theme
+
+votes <- read.csv("data/votes_gg.csv")
+
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col(aes(fill = candidate)) +
+  scale_fill_viridis_d("Candidate") +
+  scale_y_continuous(limits = c(0, 250)) +
+  labs(
+    x = "Candidate",
+    y = "Votes",
+    title = "Election Results"
+  ) +
+  theme_classic()
+```
+
+## Saving file
+
+```{r}
+# Save file
+
+votes <- read.csv("data/votes_gg.csv")
+
+p <- ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col(aes(fill = candidate)) +
+  scale_fill_viridis_d("Candidate") +
+  scale_y_continuous(limits = c(0, 250)) +
+  labs(
+    x = "Candidate",
+    y = "Votes",
+    title = "Election Results"
+  ) +
+  theme_classic()
+
+ggsave(
+  "images/votes.png",
+  plot = p,
+  width = 1200,
+  height = 900,
+  units = "px"
+)
+print('Done...!')
+```
+
