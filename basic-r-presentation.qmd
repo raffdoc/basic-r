@@ -14,51 +14,51 @@ transition: fade
 show-slide-number: all
 ---
 
-
 # Concepts
+
 ## Phylosophy
 
 ![](/images/Rlogo.png){fig-align="center"}
 
-- Give a man a fish, and you feed him for a day. Teach a man to fish, and you feed him for a lifetime. - Maimonides
-- 授人以鱼，可以养活他一天。授人以渔，可以养活他一生。
+-   Give a man a fish, and you feed him for a day. Teach a man to fish, and you feed him for a lifetime. - Maimonides
+-   授人以鱼，可以养活他一天。授人以渔，可以养活他一生。
 
 ::: aside
 All software is open-source and free.
 :::
 
-::: {.notes}
-Translate it to chinese: 
+::: notes
+Translate it to chinese:
 :::
 
 ## What is R?
-- R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
-- The R programming language was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand. 
+
+-   R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
+-   The R programming language was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand.
 
 ![](images/rgrh.jpeg){fig-align="right"}
-
 
 ::: aside
 All software is open-source and free.
 :::
 
-
 ## Software Components
 
-- R
-- RStudio
-- Prosit (VS Code)
-- On line services (free)
-- R packages
+-   R
+-   RStudio
+-   Prosit (VS Code)
+-   On line services (free)
+-   R packages
 
 ::: aside
 All software is open-source and free tu use and to change.
 :::
 
 # Programming Language Stracture
+
 ## R code syntax
 
-```{.r code-line-numbers="6-8"}
+``` {.r code-line-numbers="6-8"}
 print("Hello, World!")
 library(ggplt2)
 
@@ -71,65 +71,56 @@ Some code is borrowed from cs50 R https://cs50.harvard.edu/r/2024/
 
 ## R object types
 
-- numeric
-- character
-- vector 
-- factor
-- matrix 
-- array
-- list
-- data frame
+-   numeric
+-   character
+-   vector
+-   factor
+-   matrix
+-   array
+-   list
+-   data frame
 
-## Numeric 
+## Numeric
 
-
-
-```{.r code-line-numbers="6-8"}
+``` {.r code-line-numbers="6-8"}
 x <- 5
 class(x)
 is.numeric(x)
 ```
 
-## Character 
+## Character
 
-```{.r code-line-numbers="6-8"}
+``` {.r code-line-numbers="6-8"}
 car <- "elevated blood pressure"
 class(car)
-
 ```
 
-## Numeric Vector 
+## Numeric Vector
 
-```{.r code-line-numbers="6-8"}
+``` {.r code-line-numbers="6-8"}
 v <- c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
 class(v)
-
 ```
 
-![](images/Vectors-in-R.jpg){fig-align="right"} 
-
+![](images/Vectors-in-R.jpg){fig-align="right"}
 
 ## Character Vector
 
-```{.r code-line-numbers="6-8"}
+``` {.r code-line-numbers="6-8"}
 car_v <- c("elevated", "blood", "pressure")
 class(car_v)
-
 ```
 
 ## Factors Unordered
 
-
-```{.r code-line-numbers="6-8"}
+``` {.r code-line-numbers="6-8"}
 f <- factor(c("underweight", "underweight", "normal", "overweight", "normal"))
 levels(f)
-
 ```
 
+## Factor Ordered by level
 
-## Factor Ordered by level 
-
-```{.r code-line-numbers="6-8"}
+``` {.r code-line-numbers="6-8"}
 # Enter ORIGINAL values in levels
 # Enter the NEW level labels in labels
 # Make sure the orderings of levels and labels correspond
@@ -141,38 +132,79 @@ y <- factor(c("underweight", "underweight", "normal", "overweight", "normal"),
 levels(y)
 ```
 
-
 ## Matrix
 
-```{.r code-line-numbers="6-8"}
+``` {.r code-line-numbers="6-8"}
 mat <- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 3)
 mat 
-
 ```
 
 ## Lists
 
- 
-```{.r}
+``` r
 x <- list("5", c(1,2,3), y) # I put y, an object we created earlier, in this list
 x
 ```
 
-- hold different types
-- different lengths 
+-   hold different types
+-   different lengths
 
 ## DataFrames
 
-```{.r}
+``` r
 x <- data.frame(outcome = c(1,0,1,1),
                 exposure = c("yes", "yes", "no", "no"),
                 age = c(24, 55, 39, 18))
 x
 ```
 
-- hold different types
-- but same length
-- columns have names
-- row have indices
-![](images/dataframe.png)
+-   hold different types
+-   but same length
+-   columns have names
+-   row have indices ![](images/dataframe.png)
+
+# Operators in R
+
+## Arithmetic
+
+| Operator | Description      |
+|----------|------------------|
+| `+`      | addition         |
+| `-`      | subtraction      |
+| `*`      | multiplication   |
+| `/`      | division         |
+| `^`      | exponent         |
+| `%%`     | modulus          |
+| `%/%`    | integer division |
+
+
+## Relational
+
+| Operator | Description      |
+|----------|------------------|
+| `<`      | less             |
+| `>`      | more             |
+| `==`     | equal            |
+| `<=`     | equal or less    |
+| `>=`     | equal or more    |
+| `!=`     | not equal        |
+
+
+## Logical
+
+| Operator | Description      |
+|----------|------------------|
+| `&`      | and              |
+| `|`      | or               |
+| `!`      | logical not      |
+| `&&`     | logical and      |
+| `||`     | logical or       |
+
+## Assignment operator
+
+| Operator | Description      |
+|----------|---------------------|
+| `<-, <<-, =`| left assignment  |
+| `->, ->>`   | right assignment |
+
 
