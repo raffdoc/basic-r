@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="visualizing_data_files/libs/clipboard/clipboard.min.js"></script>
-<script src="visualizing_data_files/libs/quarto-html/tabby.min.js"></script>
-<script src="visualizing_data_files/libs/quarto-html/popper.min.js"></script>
-<script src="visualizing_data_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="visualizing_data_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="visualizing_data_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="visualizing_data_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="visualizing_data_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="dplyr_universe_files/libs/clipboard/clipboard.min.js"></script>
+<script src="dplyr_universe_files/libs/quarto-html/tabby.min.js"></script>
+<script src="dplyr_universe_files/libs/quarto-html/popper.min.js"></script>
+<script src="dplyr_universe_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="dplyr_universe_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="dplyr_universe_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="dplyr_universe_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="dplyr_universe_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.551">
 
   <meta name="author" content="Rafik Margaryan, MD, PhD">
   <meta name="dcterms.date" content="2025-03-17">
-  <title>Visualizing Data</title>
+  <title>dplyr Universe: grammar of manipulation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="visualizing_data_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="visualizing_data_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="dplyr_universe_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="dplyr_universe_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -96,11 +96,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="visualizing_data_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="visualizing_data_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="visualizing_data_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="visualizing_data_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="visualizing_data_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="dplyr_universe_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="dplyr_universe_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="dplyr_universe_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="dplyr_universe_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="dplyr_universe_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -392,7 +392,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Visualizing Data</h1>
+  <h1 class="title">dplyr Universe: grammar of manipulation</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -408,258 +408,41 @@ Rafik Margaryan, MD, PhD
   <p class="date">2025-03-17</p>
 </section>
 <section>
-<section id="barplot-in-ggplot2" class="title-slide slide level1 center">
-<h1>Barplot in ggplot2</h1>
+<section id="why-to-use-dplyr" class="title-slide slide level1 center">
+<h1>Why to use dplyr?</h1>
 
 </section>
-<section id="simple-example" class="slide level2">
-<h2>Simple example</h2>
+<section id="unefficient-way-of-doing-things" class="slide level2">
+<h2>Unefficient way of doing things</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
-<span id="cb1-3"><a href=""></a></span>
-<span id="cb1-4"><a href=""></a><span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href=""></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href=""></a>health_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/healthcare_dataset.csv"</span>)</span>
+<span id="cb1-4"><a href=""></a>health_agb <span class="ot">&lt;-</span> health_raw[, <span class="fu">c</span>(<span class="st">"Age"</span>, <span class="st">"Gender"</span>, <span class="st">"Blood Type"</span>)]</span>
+<span id="cb1-5"><a href=""></a>health_agb_f <span class="ot">&lt;-</span> health_agb[(health_agb<span class="sc">$</span><span class="st">`</span><span class="at">Blood Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"O+"</span>, <span class="st">"O-"</span>)), ]</span>
+<span id="cb1-6"><a href=""></a>health_agb_f_60 <span class="ot">&lt;-</span> health_agb_f[health_agb_f<span class="sc">$</span>Age <span class="sc">&gt;=</span> <span class="dv">60</span>, ]</span>
+<span id="cb1-7"><a href=""></a>health_agb_f_60_m <span class="ot">&lt;-</span> health_agb_f_60[health_agb_f_60<span class="sc">$</span>Gender <span class="sc">%in%</span> <span class="st">'Male'</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"><p>Nothing happens!</p>
 </section>
-<section id="feeding-data-to-ggplot-function" class="slide level2">
-<h2>Feeding data to ggplot function</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
-<span id="cb2-2"><a href=""></a></span>
-<span id="cb2-3"><a href=""></a><span class="fu">ggplot</span>(votes) <span class="sc">+</span> </span>
-<span id="cb2-4"><a href=""></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Produces an error: <code>! Errore in geom_col(): geom_col() requires the following missing aesthetics:   x and y.</code></p>
-</section>
-<section id="mapping-variables" class="slide level2">
-<h2>Mapping variables</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Add x and y aesthetics</span></span>
-<span id="cb3-2"><a href=""></a></span>
-<span id="cb3-3"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
-<span id="cb3-4"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
-<span id="cb3-5"><a href=""></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="dplyr1-package-verbs" class="slide level2">
+<h2>dplyr<sup>1</sup> package verbs</h2>
+<ul>
+<li><code>mutate()</code>: adds new variables that are functions of existing variables</li>
+<li><code>select()</code>: picks variables based on their names.</li>
+<li><code>filter()</code>: picks cases based on their values.</li>
+<li><code>summarise()</code>: reduces multiple values down to a single summary.</li>
+<li><code>arrange()</code>: changes the ordering of the rows. <img data-src="images/dplyr_verbs.jpeg"></li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>website: <a href="https://dplyr.tidyverse.org/" class="uri">https://dplyr.tidyverse.org/</a></p></li></ol></aside></section>
+<section id="piping" class="slide level2">
+<h2>Piping</h2>
 
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"><p>And voila!</p>
-</section>
-<section id="reshaping-y-limits" class="slide level2">
-<h2>Reshaping y limits</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="renaming-labs" class="slide level2">
-<h2>Renaming labs</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
-<span id="cb5-2"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href=""></a>  <span class="fu">labs</span>( <span class="at">x =</span> <span class="st">"Candidate"</span>, <span class="at">y =</span> <span class="st">"Votes"</span>, <span class="at">title =</span> <span class="st">"Election Results"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="add-fill-aesthetic-mapping-for-geom_col" class="slide level2">
-<h2>Add fill aesthetic mapping for geom_col</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
-<span id="cb6-2"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
-<span id="cb6-4"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Candidate"</span>,<span class="at">y =</span> <span class="st">"Votes"</span>, <span class="at">title =</span> <span class="st">"Election Results"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="using-viridis-scale-to-design-for-color-blindness" class="slide level2">
-<h2>Using viridis scale to design for color blindness</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
-<span id="cb7-2"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
-<span id="cb7-4"><a href=""></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="st">"Candidate"</span>) <span class="sc">+</span></span>
-<span id="cb7-5"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Candidate"</span>,<span class="at">y =</span> <span class="st">"Votes"</span>,<span class="at">title =</span> <span class="st">"Election Results"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
-<section id="adjust-ggplot-theme" class="slide level2">
-<h2>Adjust ggplot theme</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
-<span id="cb8-2"><a href=""></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href=""></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="st">"Candidate"</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
-<span id="cb8-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Candidate"</span>,<span class="at">y =</span> <span class="st">"Votes"</span>, <span class="at">title =</span> <span class="st">"Election Results"</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="saving-file" class="slide level2">
-<h2>Saving file</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># Save file</span></span>
-<span id="cb9-2"><a href=""></a></span>
-<span id="cb9-3"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/votes_gg.csv"</span>)</span>
-<span id="cb9-4"><a href=""></a></span>
-<span id="cb9-5"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
-<span id="cb9-6"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
-<span id="cb9-7"><a href=""></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="st">"Candidate"</span>) <span class="sc">+</span></span>
-<span id="cb9-8"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
-<span id="cb9-9"><a href=""></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-10"><a href=""></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
-<span id="cb9-11"><a href=""></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
-<span id="cb9-12"><a href=""></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
-<span id="cb9-13"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb9-14"><a href=""></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb9-15"><a href=""></a></span>
-<span id="cb9-16"><a href=""></a><span class="fu">ggsave</span>(</span>
-<span id="cb9-17"><a href=""></a>  <span class="st">"images/votes.png"</span>,</span>
-<span id="cb9-18"><a href=""></a>  <span class="at">plot =</span> p,</span>
-<span id="cb9-19"><a href=""></a>  <span class="at">width =</span> <span class="dv">1200</span>,</span>
-<span id="cb9-20"><a href=""></a>  <span class="at">height =</span> <span class="dv">900</span>,</span>
-<span id="cb9-21"><a href=""></a>  <span class="at">units =</span> <span class="st">"px"</span></span>
-<span id="cb9-22"><a href=""></a>)</span>
-<span id="cb9-23"><a href=""></a><span class="fu">print</span>(<span class="st">'Done...!'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Done...!"</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="geom_point-in-ggplot2" class="title-slide slide level1 center">
-<h1>geom_point in ggplot2</h1>
-
-</section>
-<section id="simple-example-1" class="slide level2">
-<h2>simple example</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">load</span>(<span class="st">"data/candy.RData"</span>)</span>
-<span id="cb11-2"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb11-3"><a href=""></a>  candy,</span>
-<span id="cb11-4"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> price_percentile, <span class="at">y =</span> sugar_percentile)</span>
-<span id="cb11-5"><a href=""></a>) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Data is from <code>candy data</code>, <sup>1</sup>.</p>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>generated using R.</p></li></ol></aside></section>
-<section id="adding-theme" class="slide level2">
-<h2>Adding theme</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb12-2"><a href=""></a>  candy,</span>
-<span id="cb12-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> price_percentile, <span class="at">y =</span> sugar_percentile)</span>
-<span id="cb12-4"><a href=""></a>) <span class="sc">+</span>   <span class="fu">geom_point</span>() <span class="sc">+</span>   <span class="fu">labs</span>(</span>
-<span id="cb12-5"><a href=""></a>    <span class="at">x =</span> <span class="st">"Price"</span>,</span>
-<span id="cb12-6"><a href=""></a>    <span class="at">y =</span> <span class="st">"Sugar"</span>,</span>
-<span id="cb12-7"><a href=""></a>    <span class="at">title =</span> <span class="st">"Price and Sugar"</span></span>
-<span id="cb12-8"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb12-9"><a href=""></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
-<section id="introduce-size-and-color-aesthetic" class="slide level2">
-<h2>Introduce size and color aesthetic</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb13-2"><a href=""></a>  candy,</span>
-<span id="cb13-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> price_percentile, <span class="at">y =</span> sugar_percentile)</span>
-<span id="cb13-4"><a href=""></a>) <span class="sc">+</span><span class="fu">geom_jitter</span>( <span class="at">color =</span> <span class="st">"darkorchid"</span>, <span class="at">size =</span> <span class="dv">2</span> ) <span class="sc">+</span> <span class="fu">labs</span>( <span class="at">x =</span> <span class="st">"Price"</span>, <span class="at">y =</span> <span class="st">"Sugar"</span>,</span>
-<span id="cb13-5"><a href=""></a>    <span class="at">title =</span> <span class="st">"Price and Sugar"</span> ) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
-<section id="introduce-point-shape-and-fill-color" class="slide level2">
-<h2>Introduce point shape and fill color</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">ggplot</span>(candy,</span>
-<span id="cb14-2"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> price_percentile, <span class="at">y =</span> sugar_percentile)) <span class="sc">+</span></span>
-<span id="cb14-3"><a href=""></a>  <span class="fu">geom_jitter</span>(<span class="at">color =</span> <span class="st">"darkorchid"</span>,</span>
-<span id="cb14-4"><a href=""></a>    <span class="at">fill =</span> <span class="st">"orchid"</span>,</span>
-<span id="cb14-5"><a href=""></a>    <span class="at">shape =</span> <span class="dv">21</span>,</span>
-<span id="cb14-6"><a href=""></a>    <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb14-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Price"</span>,<span class="at">y =</span> <span class="st">"Sugar"</span>,</span>
-<span id="cb14-8"><a href=""></a>    <span class="at">title =</span> <span class="st">"Price and Sugar"</span></span>
-<span id="cb14-9"><a href=""></a>  ) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="geom_line" class="title-slide slide level1 center">
-<h1>geom_line</h1>
-
-</section>
-<section id="basic-line-plot" class="slide level2">
-<h2>Basic Line Plot</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">load</span>(<span class="st">"data/anita.RData"</span>)</span>
-<span id="cb15-2"><a href=""></a><span class="fu">ggplot</span>(anita, <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Data <sup>1</sup>.</p>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>generated using R.</p></li></ol></aside></section>
-<section id="add-line" class="slide level2">
-<h2>Add line</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">ggplot</span>(anita, <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href=""></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
-<section id="combine-both-geoms" class="slide level2">
-<h2>Combine both geoms</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">ggplot</span>(anita, <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb17-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"deepskyblue4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
-<section id="experiment-with-geom_line-and-geom_point-aesthetics" class="slide level2">
-<h2>Experiment with geom_line and geom_point aesthetics</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">ggplot</span>(anita, <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)) <span class="sc">+</span></span>
-<span id="cb18-2"><a href=""></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb18-3"><a href=""></a>    <span class="at">linetype =</span> <span class="dv">1</span>,</span>
-<span id="cb18-4"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href=""></a>  <span class="fu">geom_point</span>( <span class="at">color =</span> <span class="st">"deepskyblue4"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
-<section id="add-labels-and-adjust-theme" class="slide level2">
-<h2>Add labels and adjust theme</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">ggplot</span>(anita, <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href=""></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="dv">1</span>,<span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb19-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"deepskyblue4"</span>,<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Wind Speed (Knots)"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">title =</span> <span class="st">"Hurricane Anita"</span> ) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
-<section id="add-horizontal-line-to-demarcate-hurricane-status" class="slide level2">
-<h2>Add horizontal line to demarcate hurricane status</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">ggplot</span>(anita, <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)) <span class="sc">+</span> <span class="fu">geom_line</span>( <span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span> ) <span class="sc">+</span> <span class="fu">geom_point</span>( <span class="at">color =</span> <span class="st">"deepskyblue4"</span>,<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb20-2"><a href=""></a>  <span class="fu">geom_hline</span>( <span class="at">linetype =</span> <span class="dv">3</span>,<span class="at">yintercept =</span> <span class="dv">64</span>) <span class="sc">+</span></span>
-<span id="cb20-3"><a href=""></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Wind Speed (Knots)"</span>,<span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">title =</span> <span class="st">"Hurricane Anita"</span></span>
-<span id="cb20-4"><a href=""></a>  ) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="visualizing_data_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"><div class="quarto-auto-generated-content">
+<img data-src="images/piping_operator.png" class="r-stretch"><p>Operators</p>
+<ul>
+<li><p>migrattr: <code>%&gt;%</code></p></li>
+<li><p>basic r version &gt; 4.0.0: <code>|&gt;</code></p></li>
+</ul>
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
@@ -670,19 +453,19 @@ Rafik Margaryan, MD, PhD
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="visualizing_data_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="visualizing_data_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="visualizing_data_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="visualizing_data_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="visualizing_data_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="visualizing_data_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="visualizing_data_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="visualizing_data_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="visualizing_data_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="visualizing_data_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="dplyr_universe_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

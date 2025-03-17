@@ -1,7 +1,10 @@
 ---
 title: "Object Oriented Programming Language"
 author: 'Rafik Margaryan, MD, PhD'
-format: revealjs
+format: 
+  revealjs:
+    footer: "all software is open source"
+    logo: images/Rlogo.png
 ---
 ## Turing Machine Simple
 

@@ -3,7 +3,10 @@ title: "Introduction to Basic R"
 author: 'Rafik Margaryan, MD, PhD'
 date: 17-03-2025
 institute: Ospedale Del Cuore Fondazione Monasterio
-format: revealjs
+format: 
+  revealjs:
+    footer: "all software is open source"
+    transition: slide
 execute:
   eval: true
   echo: true
@@ -18,7 +21,7 @@ show-slide-number: all
 
 ## Phylosophy
 
-![](/images/Rlogo.png){fig-align="center"}
+![](/images/Rlogo.png){fig-align="center" width="75%"}
 
 -   Give a man a fish, and you feed him for a day. Teach a man to fish, and you feed him for a lifetime. - Maimonides
 -   授人以鱼，可以养活他一天。授人以渔，可以养活他一生。
@@ -59,6 +62,7 @@ All software is open-source and free tu use and to change.
 ## R code syntax
 
 ``` {r }
+#| code-line-numbers: "1|2-3|4"
 print("Hello, World!")
 library(ggplot2)
 library(dplyr)

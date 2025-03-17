@@ -14,7 +14,7 @@ transition: fade
 show-slide-number: all
 ---
 
-# ggplot2
+# Barplot in ggplot2
 
 ## Simple example
 
@@ -25,7 +25,8 @@ votes <- read.csv("data/votes_gg.csv")
 ggplot()
 
 ```
-Nothing happens! 
+
+Nothing happens!
 
 ## Feeding data to ggplot function
 
@@ -36,8 +37,8 @@ ggplot(votes) +
   geom_col()
 
 ```
-Produces an error: 
-`! Errore in geom_col(): geom_col() requires the following missing aesthetics:   x and y.`
+
+Produces an error: `! Errore in geom_col(): geom_col() requires the following missing aesthetics:   x and y.`
 
 ## Mapping variables
 
@@ -45,87 +46,57 @@ Produces an error:
 # Add x and y aesthetics
 
 votes <- read.csv("data/votes_gg.csv")
-
 ggplot(votes, aes(x = candidate, y = votes)) +
   geom_col()
 ```
+
 And voila!
 
 ## Reshaping y limits
 
 ```{r}
 ggplot(votes, aes(x = candidate, y = votes)) +
-  geom_col() +
-  scale_y_continuous(limits = c(0, 250))
+  geom_col() + scale_y_continuous(limits = c(0, 250))
 ```
 
 ## Renaming labs
 
 ```{r}
 votes <- read.csv("data/votes_gg.csv")
-
 ggplot(votes, aes(x = candidate, y = votes)) +
-  geom_col() +
-  scale_y_continuous(limits = c(0, 250)) +
-  labs(
-    x = "Candidate",
-    y = "Votes",
-    title = "Election Results"
-  )
+  geom_col() + scale_y_continuous(limits = c(0, 250)) +
+  labs( x = "Candidate", y = "Votes", title = "Election Results")
 ```
 
-## Add fill color 
+## Add fill aesthetic mapping for geom_col
+
 ```{r}
-# Add fill aesthetic mapping for geom_col
-
 votes <- read.csv("data/votes_gg.csv")
-
 ggplot(votes, aes(x = candidate, y = votes)) +
   geom_col(aes(fill = candidate)) +
-  scale_y_continuous(limits = c(0, 250)) +
-  labs(
-    x = "Candidate",
-    y = "Votes",
-    title = "Election Results"
-  )
+  scale_y_continuous(limits = c(0, 250)) + labs(x = "Candidate",y = "Votes", title = "Election Results")
 
 ```
 
-## For colour blindess people
+## Using viridis scale to design for color blindness
 
 ```{r}
-# Use viridis scale to design for color blindness
-
 votes <- read.csv("data/votes_gg.csv")
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col(aes(fill = candidate)) +
+  scale_fill_viridis_d("Candidate") +
+  scale_y_continuous(limits = c(0, 250)) +labs(x = "Candidate",y = "Votes",title = "Election Results")
+```
 
+## Adjust ggplot theme
+
+```{r}
+votes <- read.csv("data/votes_gg.csv")
 ggplot(votes, aes(x = candidate, y = votes)) +
   geom_col(aes(fill = candidate)) +
   scale_fill_viridis_d("Candidate") +
   scale_y_continuous(limits = c(0, 250)) +
-  labs(
-    x = "Candidate",
-    y = "Votes",
-    title = "Election Results"
-  )
-```
-
-## Adding theme to the plot
-
-```{r}
-# Adjust ggplot theme
-
-votes <- read.csv("data/votes_gg.csv")
-
-ggplot(votes, aes(x = candidate, y = votes)) +
-  geom_col(aes(fill = candidate)) +
-  scale_fill_viridis_d("Candidate") +
-  scale_y_continuous(limits = c(0, 250)) +
-  labs(
-    x = "Candidate",
-    y = "Votes",
-    title = "Election Results"
-  ) +
-  theme_classic()
+  labs(x = "Candidate",y = "Votes", title = "Election Results") + theme_classic()
 ```
 
 ## Saving file
@@ -156,3 +127,115 @@ ggsave(
 print('Done...!')
 ```
 
+# geom_point in ggplot2
+
+## simple example
+
+```{r}
+load("data/candy.RData")
+ggplot(
+  candy,
+  aes(x = price_percentile, y = sugar_percentile)
+) + geom_point()
+```
+
+Data is from `candy data`, [^longnote]. 
+
+
+[^longnote]: data is from Tomic et al. (2010), measurements from sensory analysis (professional tasting) on a number of candy products obtained by sensory labs.
+
+## Adding theme 
+
+```{r}
+ggplot(
+  candy,
+  aes(x = price_percentile, y = sugar_percentile)
+) +   geom_point() +   labs(
+    x = "Price",
+    y = "Sugar",
+    title = "Price and Sugar"
+  ) +
+  theme_classic()
+```
+
+## Introduce size and color aesthetic
+
+
+```{r}
+ggplot(
+  candy,
+  aes(x = price_percentile, y = sugar_percentile)
+) +geom_jitter( color = "darkorchid", size = 2 ) + labs( x = "Price", y = "Sugar",
+    title = "Price and Sugar" ) + theme_classic()
+```
+
+## Introduce point shape and fill color
+
+```{r}
+ggplot(candy,
+  aes(x = price_percentile, y = sugar_percentile)) +
+  geom_jitter(color = "darkorchid",
+    fill = "orchid",
+    shape = 21,
+    size = 2) +
+  labs(x = "Price",y = "Sugar",
+    title = "Price and Sugar"
+  ) + theme_classic()
+```
+
+# geom_line
+
+## Basic Line Plot
+
+```{r}
+load("data/anita.RData")
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_point()
+```
+Data [^longnote]. 
+
+
+[^longnote]: generated using R.
+
+## Add line
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_line()
+```
+
+## Combine both geoms
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_line() +
+  geom_point(color = "deepskyblue4")
+```
+
+## Experiment with geom_line and geom_point aesthetics
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_line(
+    linetype = 1,
+    linewidth = 0.5) +
+  geom_point( color = "deepskyblue4", size = 2)
+```
+
+## Add labels and adjust theme
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_line(linetype = 1,linewidth = 0.5) +
+  geom_point(color = "deepskyblue4",size = 2) +
+  labs(y = "Wind Speed (Knots)", x = "Date", title = "Hurricane Anita" ) + theme_classic()
+```
+
+## Add horizontal line to demarcate hurricane status
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) + geom_line( linetype = 1, linewidth = 0.5 ) + geom_point( color = "deepskyblue4",size = 2) +
+  geom_hline( linetype = 3,yintercept = 64) +
+  labs(y = "Wind Speed (Knots)",x = "Date", title = "Hurricane Anita"
+  ) + theme_classic()
+```
