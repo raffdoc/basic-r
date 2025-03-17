@@ -5,6 +5,8 @@ date: 17-03-2025
 institute: Ospedale Del Cuore Fondazione Monasterio
 format: 
   revealjs:
+    multiplex: true
+    chalkboard: true
     footer: "all software is open source"
     transition: slide
 execute:
@@ -21,10 +23,9 @@ show-slide-number: all
 
 ## Phylosophy
 
-![](/images/Rlogo.png){fig-align="center" width="75%"}
+![](/images/r_ide.png){fig-align="center" height="2%"}
 
 -   Give a man a fish, and you feed him for a day. Teach a man to fish, and you feed him for a lifetime. - Maimonides
--   授人以鱼，可以养活他一天。授人以渔，可以养活他一生。
 
 ::: aside
 All software is open-source and free.
@@ -38,6 +39,7 @@ Translate it to chinese:
 
 -   R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
 -   The R programming language was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand.
+-   Derives from old S language
 
 ![](images/rgrh.jpeg){fig-align="right"}
 
@@ -47,14 +49,14 @@ All software is open-source and free.
 
 ## Software Components
 
--   R
--   RStudio
--   Prosit (VS Code)
--   On line services (free)
--   R packages
+-   R ![](images/Rlogo.png){fig-align="right" width=1in}
+-   RStudio ![](images/rstudio.png){fig-align="right" width=1in}
+-   Prosit (VS Code) ![](images/positron-logo.png){fig-align="right" width=1in}
+-   On line services (free)![](images/rstudio-cloud.png){fig-align="right" width=1in}
+-   R packages ![](images/r_packages.png){fig-align="right" width=1in}
 
 ::: aside
-All software is open-source and free tu use and to change.
+All software is open-source and free to use and to change.
 :::
 
 # Programming Language Stracture
