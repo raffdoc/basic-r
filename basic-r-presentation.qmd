@@ -224,7 +224,7 @@ x
 
 
 ``` {r }
-#| code-line-numbers: "1|2-3|4"
+#| code-line-numbers: "1|2-3|4|5"
 add <- function(number1, number2){
   sum <- number1 + number2
   return(sum)
@@ -238,7 +238,7 @@ add <- function(number1, number2){
 
 
 ``` {r }
-#| code-line-numbers: "1|2-3|4"
+#| code-line-numbers: "1|2-3|4|5"
 result <- add(
   number1 = 2,
   number2 = 3
@@ -253,7 +253,7 @@ print(result)
 
 
 ``` {r }
-#| code-line-numbers: "1|2-3|4"
+#| code-line-numbers: "1|2-3|4|5"
 result <- add(
   2,
   3
