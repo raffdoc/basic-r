@@ -222,8 +222,6 @@ x
 
 ## Create A Function 
 
--   argument names
--   arguments positions
 
 ``` {r }
 #| code-line-numbers: "1|2-3|4"
@@ -231,4 +229,34 @@ add <- function(number1, number2){
   sum <- number1 + number2
   return(sum)
 }
+```
+
+
+## Create A Function 
+
+-   argument names
+
+
+``` {r }
+#| code-line-numbers: "1|2-3|4"
+result <- add(
+  number1 = 2,
+  number2 = 3
+  )
+print(result)
+```
+
+
+## Create A Function 
+
+-   argument positions
+
+
+``` {r }
+#| code-line-numbers: "1|2-3|4"
+result <- add(
+  2,
+  3
+  )
+print(result)
 ```
