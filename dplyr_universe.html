@@ -277,21 +277,23 @@ Rafik Margaryan, MD, PhD
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>health <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href=""></a>  <span class="fu">select</span>(Age, Gender, <span class="st">`</span><span class="at">Blood Type</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href=""></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Blood Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"O+"</span>, <span class="st">"O-"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href=""></a>  <span class="fu">group_by</span>(Gender, <span class="st">`</span><span class="at">Blood Type</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(Age), </span>
-<span id="cb4-6"><a href=""></a>            <span class="at">sd_age =</span> <span class="fu">sd</span>(Age), </span>
-<span id="cb4-7"><a href=""></a>            <span class="at">n_age =</span> <span class="fu">n</span>()</span>
-<span id="cb4-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">Age =</span> <span class="fu">round</span>(Age, <span class="at">digits =</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href=""></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Blood Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"O+"</span>, <span class="st">"O-"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href=""></a>  <span class="fu">group_by</span>(Gender, <span class="st">`</span><span class="at">Blood Type</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(Age), </span>
+<span id="cb4-7"><a href=""></a>            <span class="at">sd_age =</span> <span class="fu">sd</span>(Age), </span>
+<span id="cb4-8"><a href=""></a>            <span class="at">n_age =</span> <span class="fu">n</span>()</span>
+<span id="cb4-9"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a href=""></a>  <span class="fu">arrange</span>(mean_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
 # Groups:   Gender [2]
   Gender `Blood Type` mean_age sd_age n_age
   &lt;chr&gt;  &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
-1 Female O+               68.9   6.86  3464
-2 Female O-               68.9   7.06  3512
-3 Male   O+               68.0   5.03  3453
-4 Male   O-               67.9   5.00  3365</code></pre>
+1 Male   O-               67.9   5.02  3365
+2 Male   O+               68.0   5.04  3453
+3 Female O+               68.9   6.88  3464
+4 Female O-               68.9   7.07  3512</code></pre>
 </div>
 </div>
 

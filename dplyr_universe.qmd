@@ -64,10 +64,12 @@ health
 ```{r}
 health |> 
   select(Age, Gender, `Blood Type`) |>
+  mutate(Age = round(Age, digits = 0)) |>
   filter(`Blood Type` %in% c("O+", "O-")) |>
   group_by(Gender, `Blood Type`) |>
   summarise(mean_age = mean(Age), 
             sd_age = sd(Age), 
             n_age = n()
-  )
+  ) |>
+  arrange(mean_age)
 ```
