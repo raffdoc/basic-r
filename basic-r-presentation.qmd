@@ -169,7 +169,8 @@ x
 -   hold different types
 -   but same length
 -   columns have names
--   row have indices ![](images/dataframe.png)
+-   row have indices 
+![](images/dataframe.png)
 
 # Operators in R
 
