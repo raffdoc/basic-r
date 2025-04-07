@@ -378,7 +378,7 @@ ggcoefstats(mod)
 
 ```
 
-## The Perfection
+##
 
-![Kids Footprint](images/out.svg)
+![](images/out.svg){height=100%}
 
