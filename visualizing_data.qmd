@@ -1,9 +1,15 @@
 ---
 title: "Visualizing Data"
 author: 'Rafik Margaryan, MD, PhD'
-date: 2025-03-17
+date: "`r Sys.time()`"
 institute: Ospedale Del Cuore Fondazione Monasterio
-format: revealjs
+format: 
+  revealjs:
+    multiplex: true
+    chalkboard: true
+    footer: "all software is open source"
+    transition: slide
+    auto-stretch: false
 execute:
   eval: true
   echo: true
@@ -20,10 +26,25 @@ show-slide-number: all
 
 ```{r}
 library(ggplot2)
+library(ggthemes)
+library(datasauRus)
+library(dplyr)
+library(ggstatsplot)
+set.seed(123)
+library(ggstatsplot)
+library(WRS2) ## for data
+library(afex) ## to run ANOVA
 votes <- read.csv("data/votes_gg.csv")
+diabetes <- read.csv("data/diabetes.csv")
 
+corrs <- datasaurus_dozen |> 
+  group_by(dataset) |> 
+  summarize(corr = cor(x, y)) |> 
+  mutate(
+    corr = round(corr, 2), #<<
+    corr = paste("corr:", corr) #<<
+  )
 ggplot()
-
 ```
 
 Nothing happens!
@@ -96,7 +117,8 @@ ggplot(votes, aes(x = candidate, y = votes)) +
   geom_col(aes(fill = candidate)) +
   scale_fill_viridis_d("Candidate") +
   scale_y_continuous(limits = c(0, 250)) +
-  labs(x = "Candidate",y = "Votes", title = "Election Results") + theme_classic()
+  labs(x = "Candidate",y = "Votes", title = "Election Results") +
+  theme_classic() 
 ```
 
 ## Saving file
@@ -139,12 +161,11 @@ ggplot(
 ) + geom_point()
 ```
 
-Data is from `candy data`, [^longnote]. 
+Data is from `candy data`, [^1].
 
+[^1]: generated using R.
 
-[^longnote]: data is from Tomic et al. (2010), measurements from sensory analysis (professional tasting) on a number of candy products obtained by sensory labs.
-
-## Adding theme 
+## Adding theme
 
 ```{r}
 ggplot(
@@ -159,7 +180,6 @@ ggplot(
 ```
 
 ## Introduce size and color aesthetic
-
 
 ```{r}
 ggplot(
@@ -192,10 +212,10 @@ load("data/anita.RData")
 ggplot(anita, aes(x = timestamp, y = wind)) +
   geom_point()
 ```
-Data [^longnote]. 
 
+Data [^2].
 
-[^longnote]: generated using R.
+[^2]: generated using R.
 
 ## Add line
 
@@ -239,3 +259,126 @@ ggplot(anita, aes(x = timestamp, y = wind)) + geom_line( linetype = 1, linewidth
   labs(y = "Wind Speed (Knots)",x = "Date", title = "Hurricane Anita"
   ) + theme_classic()
 ```
+
+# geom_smooth
+
+## Scatter-plot with regression line
+
+```{r }
+ggplot(diabetes, aes(weight, hip)) + 
+  geom_point() +
+  geom_smooth()
+```
+
+## Adding grouping variable
+
+```{r }
+ggplot(diabetes, aes(weight, hip)) + 
+  geom_point() +
+  geom_smooth(aes(linetype = gender))
+```
+
+## Changing aesthetics
+
+```{r }
+ggplot(diabetes, aes(weight, hip)) + 
+  geom_point(alpha = .2) +
+  geom_smooth(aes(linetype = gender), col = "black", se = FALSE)
+```
+
+## My choice
+
+```{r }
+ggplot(diabetes, aes(weight, hip)) + 
+  geom_point(alpha = .2) +
+  geom_smooth(aes(linetype = gender), col = "black", se = FALSE) +
+  theme_tufte()
+```
+
+## Facets
+
+## Easy panels 
+
+-   **`facet_grid()`**
+-   **`facet_wrap()`**
+
+## 
+
+```{r}
+diamonds |> 
+  ggplot(aes(x = carat, price, colour = color)) + 
+  geom_point() + 
+  facet_grid(rows = vars(cut), cols = vars(clarity)) +
+  theme_tufte()
+```
+
+## Fun correlation facets
+
+```{r}
+datasaurus_dozen |> 
+  ggplot(aes(x, y)) + 
+    geom_point() + 
+    geom_text(data = corrs, aes(label = corr, x = 50, y = 110)) +
+    facet_wrap(vars(dataset)) +
+    theme_tufte()
+```
+
+# Advanced statistical plots
+
+## Box-plot in its essence
+
+![Boxplot explanation](images/boxplot.png)
+
+## Example with ggstatsplot groups
+
+```{r}
+ggbetweenstats(
+  data  = iris,
+  x     = Species,
+  y     = Sepal.Length,
+  title = "Distribution of sepal length across Iris species"
+)
+```
+
+
+## Repeated measures
+
+```{r}
+ggwithinstats(
+  data    = WineTasting,
+  x       = Wine,
+  y       = Taste,
+  title   = "Wine tasting"
+)
+```
+
+## Regression plto with marginal histograms
+
+```{r}
+grouped_ggscatterstats(
+  data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  x                = rating,
+  y                = length,
+  grouping.var     = genre,
+  label.var        = title,
+  label.expression = length > 200,
+  xlab             = "IMDB rating",
+  ggtheme          = ggplot2::theme_grey(),
+  ggplot.component = list(ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))),
+  plotgrid.args    = list(nrow = 1),
+  annotation.args  = list(title = "Relationship between movie length and IMDB ratings")
+)
+```
+
+## Visualizing model stats
+
+```{r}
+mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
+ggcoefstats(mod)
+
+```
+
+## The Perfection
+
+![Kids Footprint](images/out.svg)
+

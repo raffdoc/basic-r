@@ -1,0 +1,503 @@
+---
+title: "Visualizing Data"
+author: 'Rafik Margaryan, MD, PhD'
+date: "`r Sys.time()`"
+institute: Ospedale Del Cuore Fondazione Monasterio
+format: 
+  revealjs:
+    multiplex: true
+    chalkboard: true
+    footer: "all software is open source"
+    transition: slide
+    auto-stretch: false
+execute:
+  eval: true
+  echo: true
+  warning: false
+  output: true
+  include: true
+transition: fade
+show-slide-number: all
+---
+
+
+
+# Barplot in ggplot2
+
+## Simple example
+
+
+
+```{r}
+library(ggplot2)
+library(ggthemes)
+library(datasauRus)
+library(dplyr)
+library(ggstatsplot)
+set.seed(123)
+library(ggstatsplot)
+library(WRS2) ## for data
+library(afex) ## to run ANOVA
+votes <- read.csv("data/votes_gg.csv")
+diabetes <- read.csv("data/diabetes.csv")
+
+corrs <- datasaurus_dozen |> 
+  group_by(dataset) |> 
+  summarize(corr = cor(x, y)) |> 
+  mutate(
+    corr = round(corr, 2), #<<
+    corr = paste("corr:", corr) #<<
+  )
+ggplot()
+```
+
+
+
+Nothing happens!
+
+## Feeding data to ggplot function
+
+
+
+```{r eval=FALSE}
+votes <- read.csv("data/votes_gg.csv")
+
+ggplot(votes) + 
+  geom_col()
+
+```
+
+
+
+Produces an error: `! Errore in geom_col(): geom_col() requires the following missing aesthetics:   x and y.`
+
+## Mapping variables
+
+
+
+```{r }
+# Add x and y aesthetics
+
+votes <- read.csv("data/votes_gg.csv")
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col()
+```
+
+
+
+And voila!
+
+## Reshaping y limits
+
+
+
+```{r}
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col() + scale_y_continuous(limits = c(0, 250))
+```
+
+
+
+## Renaming labs
+
+
+
+```{r}
+votes <- read.csv("data/votes_gg.csv")
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col() + scale_y_continuous(limits = c(0, 250)) +
+  labs( x = "Candidate", y = "Votes", title = "Election Results")
+```
+
+
+
+## Add fill aesthetic mapping for geom_col
+
+
+
+```{r}
+votes <- read.csv("data/votes_gg.csv")
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col(aes(fill = candidate)) +
+  scale_y_continuous(limits = c(0, 250)) + labs(x = "Candidate",y = "Votes", title = "Election Results")
+
+```
+
+
+
+## Using viridis scale to design for color blindness
+
+
+
+```{r}
+votes <- read.csv("data/votes_gg.csv")
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col(aes(fill = candidate)) +
+  scale_fill_viridis_d("Candidate") +
+  scale_y_continuous(limits = c(0, 250)) +labs(x = "Candidate",y = "Votes",title = "Election Results")
+```
+
+
+
+## Adjust ggplot theme
+
+
+
+```{r}
+votes <- read.csv("data/votes_gg.csv")
+ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col(aes(fill = candidate)) +
+  scale_fill_viridis_d("Candidate") +
+  scale_y_continuous(limits = c(0, 250)) +
+  labs(x = "Candidate",y = "Votes", title = "Election Results") +
+  theme_classic() 
+```
+
+
+
+## Saving file
+
+
+
+```{r}
+# Save file
+
+votes <- read.csv("data/votes_gg.csv")
+
+p <- ggplot(votes, aes(x = candidate, y = votes)) +
+  geom_col(aes(fill = candidate)) +
+  scale_fill_viridis_d("Candidate") +
+  scale_y_continuous(limits = c(0, 250)) +
+  labs(
+    x = "Candidate",
+    y = "Votes",
+    title = "Election Results"
+  ) +
+  theme_classic()
+
+ggsave(
+  "images/votes.png",
+  plot = p,
+  width = 1200,
+  height = 900,
+  units = "px"
+)
+print('Done...!')
+```
+
+
+
+# geom_point in ggplot2
+
+## simple example
+
+
+
+```{r}
+load("data/candy.RData")
+ggplot(
+  candy,
+  aes(x = price_percentile, y = sugar_percentile)
+) + geom_point()
+```
+
+
+
+Data is from `candy data`, [^1].
+
+[^1]: generated using R.
+
+## Adding theme
+
+
+
+```{r}
+ggplot(
+  candy,
+  aes(x = price_percentile, y = sugar_percentile)
+) +   geom_point() +   labs(
+    x = "Price",
+    y = "Sugar",
+    title = "Price and Sugar"
+  ) +
+  theme_classic()
+```
+
+
+
+## Introduce size and color aesthetic
+
+
+
+```{r}
+ggplot(
+  candy,
+  aes(x = price_percentile, y = sugar_percentile)
+) +geom_jitter( color = "darkorchid", size = 2 ) + labs( x = "Price", y = "Sugar",
+    title = "Price and Sugar" ) + theme_classic()
+```
+
+
+
+## Introduce point shape and fill color
+
+
+
+```{r}
+ggplot(candy,
+  aes(x = price_percentile, y = sugar_percentile)) +
+  geom_jitter(color = "darkorchid",
+    fill = "orchid",
+    shape = 21,
+    size = 2) +
+  labs(x = "Price",y = "Sugar",
+    title = "Price and Sugar"
+  ) + theme_classic()
+```
+
+
+
+# geom_line
+
+## Basic Line Plot
+
+
+
+```{r}
+load("data/anita.RData")
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_point()
+```
+
+
+
+Data [^2].
+
+[^2]: generated using R.
+
+## Add line
+
+
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_line()
+```
+
+
+
+## Combine both geoms
+
+
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_line() +
+  geom_point(color = "deepskyblue4")
+```
+
+
+
+## Experiment with geom_line and geom_point aesthetics
+
+
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_line(
+    linetype = 1,
+    linewidth = 0.5) +
+  geom_point( color = "deepskyblue4", size = 2)
+```
+
+
+
+## Add labels and adjust theme
+
+
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) +
+  geom_line(linetype = 1,linewidth = 0.5) +
+  geom_point(color = "deepskyblue4",size = 2) +
+  labs(y = "Wind Speed (Knots)", x = "Date", title = "Hurricane Anita" ) + theme_classic()
+```
+
+
+
+## Add horizontal line to demarcate hurricane status
+
+
+
+```{r}
+ggplot(anita, aes(x = timestamp, y = wind)) + geom_line( linetype = 1, linewidth = 0.5 ) + geom_point( color = "deepskyblue4",size = 2) +
+  geom_hline( linetype = 3,yintercept = 64) +
+  labs(y = "Wind Speed (Knots)",x = "Date", title = "Hurricane Anita"
+  ) + theme_classic()
+```
+
+
+
+# geom_smooth
+
+## Scatter-plot with regression line
+
+
+
+```{r }
+ggplot(diabetes, aes(weight, hip)) + 
+  geom_point() +
+  geom_smooth()
+```
+
+
+
+## Adding grouping variable
+
+
+
+```{r }
+ggplot(diabetes, aes(weight, hip)) + 
+  geom_point() +
+  geom_smooth(aes(linetype = gender))
+```
+
+
+
+## Changing aesthetics
+
+
+
+```{r }
+ggplot(diabetes, aes(weight, hip)) + 
+  geom_point(alpha = .2) +
+  geom_smooth(aes(linetype = gender), col = "black", se = FALSE)
+```
+
+
+
+## My choice
+
+
+
+```{r }
+ggplot(diabetes, aes(weight, hip)) + 
+  geom_point(alpha = .2) +
+  geom_smooth(aes(linetype = gender), col = "black", se = FALSE) +
+  theme_tufte()
+```
+
+
+
+## Facets
+
+## Easy panels 
+
+-   **`facet_grid()`**
+-   **`facet_wrap()`**
+
+## 
+
+
+
+```{r}
+diamonds |> 
+  ggplot(aes(x = carat, price, colour = color)) + 
+  geom_point() + 
+  facet_grid(rows = vars(cut), cols = vars(clarity)) +
+  theme_tufte()
+```
+
+
+
+## Fun correlation facets
+
+
+
+```{r}
+datasaurus_dozen |> 
+  ggplot(aes(x, y)) + 
+    geom_point() + 
+    geom_text(data = corrs, aes(label = corr, x = 50, y = 110)) +
+    facet_wrap(vars(dataset)) +
+    theme_tufte()
+```
+
+
+
+# Advanced statistical plots
+
+## Box-plot in its essence
+
+![Boxplot explanation](images/boxplot.png)
+
+## Example with ggstatsplot groups
+
+
+
+```{r}
+ggbetweenstats(
+  data  = iris,
+  x     = Species,
+  y     = Sepal.Length,
+  title = "Distribution of sepal length across Iris species"
+)
+```
+
+
+
+
+## Repeated measures
+
+
+
+```{r}
+ggwithinstats(
+  data    = WineTasting,
+  x       = Wine,
+  y       = Taste,
+  title   = "Wine tasting"
+)
+```
+
+
+
+## Regression plto with marginal histograms
+
+
+
+```{r}
+grouped_ggscatterstats(
+  data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  x                = rating,
+  y                = length,
+  grouping.var     = genre,
+  label.var        = title,
+  label.expression = length > 200,
+  xlab             = "IMDB rating",
+  ggtheme          = ggplot2::theme_grey(),
+  ggplot.component = list(ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))),
+  plotgrid.args    = list(nrow = 1),
+  annotation.args  = list(title = "Relationship between movie length and IMDB ratings")
+)
+```
+
+
+
+## Visualizing model stats
+
+
+
+```{r}
+mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
+ggcoefstats(mod)
+
+```
+
+
+
+## The Perfection
+
+![Kids Footprint](images/out.svg)
+
+

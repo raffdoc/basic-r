@@ -28,3 +28,8 @@ health |>
             sd_age = sd(Age), 
             n_age = n()
             )
+health |>
+  select(Age, Gender) |>
+  group_by(Gender) |>
+  summarise(p.value = t.test(Age ~ Gender)) |>
+  ungroup()
