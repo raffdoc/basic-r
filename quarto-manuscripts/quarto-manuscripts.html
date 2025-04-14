@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="quarto-manuscripts_files/libs/clipboard/clipboard.min.js"></script>
+<script src="quarto-manuscripts_files/libs/quarto-html/tabby.min.js"></script>
+<script src="quarto-manuscripts_files/libs/quarto-html/popper.min.js"></script>
+<script src="quarto-manuscripts_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="quarto-manuscripts_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="quarto-manuscripts_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="quarto-manuscripts_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="quarto-manuscripts_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="quarto-manuscripts_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="R Margaryan">
+  <title>Quarto for Reproducible Medical Manuscripts</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="quarto-manuscripts_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="quarto-manuscripts_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="quarto-manuscripts_files/libs/revealjs/dist/theme/quarto-31696b8a9a8356ba9bde3d211def5fd7.css">
+  <link href="quarto-manuscripts_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="quarto-manuscripts_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="quarto-manuscripts_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="quarto-manuscripts_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="images/towfiqu-barbhuiya-KKHs1e2yiwc-unsplash.jpg" data-background-opacity="0.25" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">Quarto for Reproducible Medical Manuscripts</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+R Margaryan 
+</div>
+        <p class="quarto-title-affiliation">
+            Ospedale Del Cuore <br><i class="fa-solid fa-link" aria-label="link"></i> <a href="https://raffdoc.github.io/manuscripts-template">manuscipt-template</a>
+          </p>
+    </div>
+</div>
+
+</section>
+<section>
+<section id="full-complexity-spectrum-of-reproducible-scientific-projects" class="title-slide slide level1 center">
+<h1>Full complexity spectrum of reproducible scientific projects</h1>
+
+</section>
+<section id="simplest" class="slide level2">
+<h2>Simplest</h2>
+<p>Can run all code in a single file, and don’t mind running it over and over again with each edit.</p>
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div style="text-align: center;">
+<p><img data-src="images/quarto-file.png" class="quarto-figure quarto-figure-center"> <span style="font-size: 100px;color: #3564B1"><i class="fa-brands fa-r-project" aria-label="r-project"></i></span></p>
+</div>
+</div><div class="column" style="width:5%;">
+<div style="text-align: center; font-size: 30px;">
+<p><br><br> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i></p>
+</div>
+</div><div class="column" style="width:47.5%;">
+<div style="text-align: center; font-size: 190px;">
+<p><span style="color: #d35836"><i class="fa-brands fa-html5" aria-label="html5"></i></span></p>
+</div>
+</div></div>
+<p>e.g.&nbsp;Data Science 101 - HW 1, Stat 101 - Final project, a blog post, a tutorial, a not-too-extensive consulting report, etc.</p>
+</section>
+<section id="simple" class="slide level2">
+<h2>Simple</h2>
+<p>Can run all code in a single file, and don’t mind running it over and over again with each edit, <strong>and</strong> need an output that conforms to journal style.</p>
+<div class="columns">
+<div class="column" style="width:35%;">
+<div style="text-align: center;">
+<p><img data-src="images/quarto-file.png" class="quarto-figure quarto-figure-center"> <span style="font-size: 100px;color: #3564B1"><i class="fa-brands fa-r-project" aria-label="r-project"></i></span></p>
+<p><code>+</code> <a href="https://quarto.org/docs/extensions/listing-journals.html"><strong>Quarto Journal Articles Extension</strong></a></p>
+</div>
+</div><div class="column" style="width:5%;">
+<div style="text-align: center; font-size: 30px;">
+<p><br><br> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i></p>
+</div>
+</div><div class="column" style="width:55%;">
+<div style="text-align: center; font-size: 190px;">
+<p><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> <span style="font-size: 50px">or</span> <i class="fa-solid fa-file-word" aria-label="file-word"></i></p>
+</div>
+<div style="text-align: center;">
+<p><span style="font-size: 40px">formatted with journal style</span></p>
+</div>
+</div></div>
+<p>e.g., a not-too-computational journal article.</p>
+</section>
+<section id="but-science-is-rarely-simple" class="slide level2 center">
+<h2><span style="font-size: 80px; font-family: Brusher;">but science is rarely simple…</span></h2>
+<div>
+<ul>
+<li class="fragment">multiple collaborators, each with their favorite computing language and code editor</li>
+<li class="fragment">multiple stages of a project, each with their own level of feasibility of what can be re-run with each edit and what needs to be cached</li>
+</ul>
+</div>
+</section>
+<section id="more-complex" class="slide level2">
+<h2>More complex</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div style="text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/quarto-file.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+<p><span style="font-size: 70px"><i class="fa-solid fa-file-code" aria-label="file-code"></i> <i class="fa-solid fa-file-code" aria-label="file-code"></i> <i class="fa-solid fa-file-code" aria-label="file-code"></i> <i class="fa-solid fa-file-code" aria-label="file-code"></i></span></p>
+<p><span style="font-size: 100px;color: #3564B1"><i class="fa-brands fa-r-project" aria-label="r-project"></i></span></p>
+</div>
+</div><div class="column" style="width:5%;">
+<div style="text-align: center; font-size: 30px;">
+<p><br><br> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i></p>
+</div>
+</div><div class="column" style="width:55%;">
+<div style="text-align: center; font-size: 190px;">
+<p><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> <span style="font-size: 50px">or</span> <i class="fa-solid fa-file-word" aria-label="file-word"></i></p>
+</div>
+</div></div>
+</section>
+<section id="even-more-complex" class="slide level2">
+<h2>Even more complex</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div style="text-align: center;">
+<p><img data-src="images/quarto-file.png" class="quarto-figure quarto-figure-center"><img data-src="images/quarto-file.png" class="quarto-figure quarto-figure-center"></p>
+<p><span style="font-size: 70px"><i class="fa-solid fa-file-code" aria-label="file-code"></i> <i class="fa-solid fa-file-code" aria-label="file-code"></i> <i class="fa-solid fa-file-code" aria-label="file-code"></i> <i class="fa-solid fa-file-code" aria-label="file-code"></i> <i class="fa-solid fa-file-code" aria-label="file-code"></i> <i class="fa-solid fa-file-code" aria-label="file-code"></i> <i class="fa-solid fa-file-code" aria-label="file-code"></i></span></p>
+<p><span style="font-size: 100px;color: #306998"><i class="fa-brands fa-r-project" aria-label="r-project"></i></span> <span style="font-size: 100px;color: #4B8BBE"><i class="fa-brands fa-python" aria-label="python"></i></span></p>
+</div>
+</div><div class="column" style="width:5%;">
+<div style="text-align: center; font-size: 30px;">
+<p><br><br> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i></p>
+</div>
+</div><div class="column" style="width:55%;">
+<div style="text-align: center; font-size: 190px;">
+<p><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> <span style="font-size: 50px">or</span> <i class="fa-solid fa-file-word" aria-label="file-word"></i></p>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="leveraging-quarto-for-fully-reproducible-scientific-manuscripts" class="title-slide slide level1 center">
+<h1>Leveraging Quarto for fully reproducible scientific manuscripts</h1>
+
+</section>
+<section id="aside-what-is-in-a-notebook" class="slide level2">
+<h2>Aside: What is in a notebook?</h2>
+<p>A notebook is a document that contains both <strong>code</strong> and <strong>narrative</strong>:</p>
+<ul>
+<li>Jupyter notebooks (<code>.ipynb</code>)</li>
+<li>Quarto documents (<code>.qmd</code>) – a potential mindshift</li>
+</ul>
+</section>
+<section id="current-state-of-affairs" class="slide level2">
+<h2>Current state of affairs</h2>
+<p>Most computational science is <strong>born in notebooks</strong></p>
+<div>
+<ul>
+<li class="fragment">Peer-review and publication workflows <strong>don’t support notebooks</strong> as research outputs</li>
+<li class="fragment">The more complex scenarios involve a lot of <strong>manual finagling</strong> to bring the project to journal submission stage</li>
+<li class="fragment">Often during this process <strong>reproducibility is lost</strong>, or takes second seat to the formatting requirements</li>
+<li class="fragment">Final submission <strong>rarely captures all computations</strong>, which are, at best, relegated to supplementary materials</li>
+</ul>
+</div>
+<p>and <del>dies</del> <strong>ends in PDF or Word documents</strong></p>
+</section>
+<section id="section" class="slide level2 centered">
+<h2></h2>
+<p><img data-src="images/notebooks-now.png" style="width:100.0%"></p>
+<p>More at <a href="https://data.agu.org/notebooks-now" class="uri">https://data.agu.org/notebooks-now</a>.</p>
+
+<aside><div>
+<p>Caprarelli, Graziella, et al.&nbsp;“Notebooks Now! The Future of Reproducible Research.” <em>Earth and Space Science</em> 10.12 (2023): e2023EA003458. <a href="https://doi.org/10.1029/2023EA003458" class="uri">https://doi.org/10.1029/2023EA003458</a>.</p>
+</div></aside></section>
+<section id="roadmap-to-fully-reproducible-scientific-manuscripts" class="slide level2">
+<h2>Roadmap to fully reproducible scientific manuscripts</h2>
+<p><em>that are not just PDFs that are the outputs of a single qmd file</em></p>
+<div class="fragment">
+<p><span style="font-size: 50px; color: #4B8BBE"><i class="fa-solid fa-puzzle-piece" aria-label="puzzle-piece"></i></span> An end-to-end scholarly publishing workflow that treats Jupyter and Quarto notebooks as a primary element of the scientific record.</p>
+</div>
+<div class="fragment">
+<p><span style="font-size: 50px; color: #306998"><i class="fa-solid fa-puzzle-piece" aria-label="puzzle-piece"></i></span> A publication process that elevates transparent and reproducible work by authors, where data and software, together with narrative, are documented, shared, and archived.</p>
+</div>
+<div class="fragment">
+<p><span style="font-size: 50px"><i class="fa-solid fa-puzzle-piece" aria-label="puzzle-piece"></i></span> New forms of credit to the wider research community, including research software engineers.</p>
+</div>
+</section>
+<section id="quarto-can" class="slide level2">
+<h2>Quarto can…</h2>
+<div>
+<ul>
+<li class="fragment"><strong>be authored</strong> in your favorite code editor</li>
+<li class="fragment"><strong>render</strong> from qmd or Jupyter notebook to PDF, Word, HTML, etc.</li>
+<li class="fragment"><strong>execute</strong> code in R, Python, and more</li>
+<li class="fragment"><strong>apply</strong> journal styles to your outputs with Quarto extensions</li>
+<li class="fragment"><strong>publish</strong> to GitHub Pages, Netlify, and more</li>
+<li class="fragment"><span class="fragment fade-in-then-semi-out"><strong>orchestrate</strong> multiple inputs and outputs with Quarto projects</span></li>
+<li class="fragment"><span class="fragment" style="color: #e0218a"><strong>orchestrate</strong> multiple inputs and outputs <strong>with embedded computing using a new Quarto project <code>type: manuscript</code></strong></span></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="a-new-project-type-manuscript" class="title-slide slide level1 center">
+<h1>A new project<br><code>type: manuscript</code></h1>
+
+</section>
+<section id="quarto-manuscript" class="slide level2">
+<h2>Quarto manuscript</h2>
+<p>Quarto <strong>manuscripts</strong> (Quarto 1.4+), in addition to doing everything you can do with journal articles, can</p>
+<ul>
+<li><p>produce manuscripts in <strong>multiple formats</strong> (including LaTeX or MS Word formats required by journals), and give readers easy access to all of the formats through a website</p></li>
+<li><p><strong>publish computations</strong> from one or more notebooks alongside the manuscript, allowing readers to dive into your code and view it or interact with it in a virtual environment</p></li>
+</ul>
+</section></section>
+<section>
+<section id="lets-write-a-manuscript" class="title-slide slide level1 center">
+<h1>Let’s write a manuscript</h1>
+
+</section>
+<section id="getting-started" class="slide level2">
+<h2>Getting started</h2>
+<ul>
+<li>Approach 1: Start from scratch
+<ul>
+<li>Creating a Quarto manuscript
+<ul>
+<li>RStudio: New Project &gt; New Directory &gt; Quarto Manuscript</li>
+<li><code>quarto create project manuscript &lt;name&gt;</code></li>
+</ul></li>
+<li>Add manuscript content</li>
+</ul></li>
+<li>Approach 2: Start with a sample from <a href="https://quarto.org/docs/manuscripts" class="uri">https://quarto.org/docs/manuscripts</a></li>
+</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Manuscripts ♥️ Git + GitHub</strong></p>
+</div>
+<div class="callout-content">
+<p>Track your project with Git and host on GitHub for easy publishing.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="create-a-new-project" class="slide level2">
+<h2>Create a new project</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="Terminal"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href=""></a><span class="ex">quarto</span> create project manuscript indo-rct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<pre><code>Creating project at /Users/mine/indo-rct:
+  - Created _quarto.yml
+  - Created index.qmd
+  - Created references.bib
+ ? Open With
+   vscode
+ ❯ rstudio
+   (don't open)</code></pre>
+</section>
+<section id="manuscript-project-in-rstudio" class="slide level2">
+<h2>Manuscript project in RStudio</h2>
+
+<img data-src="images/manuscript-create-rstudio.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="manuscript-project-_quarto.yml" class="slide level2">
+<h2>Manuscript project <code>_quarto.yml</code></h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href=""></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> manuscript</span></span>
+<span id="cb3-3"><a href=""></a></span>
+<span id="cb3-4"><a href=""></a><span class="fu">manuscript</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href=""></a><span class="at">  </span><span class="fu">article</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
+<span id="cb3-6"><a href=""></a></span>
+<span id="cb3-7"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb3-8"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href=""></a><span class="at">    </span><span class="fu">comments</span><span class="kw">:</span></span>
+<span id="cb3-10"><a href=""></a><span class="at">      </span><span class="fu">hypothesis</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb3-11"><a href=""></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb3-12"><a href=""></a><span class="at">  </span><span class="fu">jats</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb3-13"><a href=""></a></span>
+<span id="cb3-14"><a href=""></a><span class="co">  # (other formats)</span></span>
+<span id="cb3-15"><a href=""></a><span class="co">  # pdf: default</span></span>
+<span id="cb3-16"><a href=""></a></span>
+<span id="cb3-17"><a href=""></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb3-18"><a href=""></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a-finished-product" class="slide level2">
+<h2>A finished product</h2>
+<iframe src="https://mine-cetinkaya-rundel.github.io/indo-rct//" title="A Randomized Trial of Rectal Indomethacin to Prevent Post-ERCP Pancreatitis" width="1100px" height="600px"></iframe>
+</section>
+<section id="multiple-formats-from-one-source" class="slide level2">
+<h2>Multiple formats from one source</h2>
+
+<img data-src="images/multiple-formats.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="multiple-formats-from-one-source-1" class="slide level2">
+<h2>Multiple formats from one source</h2>
+<p>In <code>quarto.yml</code> of the project:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="_quarto.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href=""></a><span class="at">    </span><span class="fu">comments</span><span class="kw">:</span></span>
+<span id="cb4-4"><a href=""></a><span class="at">      </span><span class="fu">hypothesis</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-5"><a href=""></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb4-6"><a href=""></a><span class="at">  </span><span class="fu">jats</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb4-7"><a href=""></a><span class="at">  </span><span class="fu">plos-pdf</span><span class="kw">:</span></span>
+<span id="cb4-8"><a href=""></a><span class="at">    </span><span class="fu">keep-tex</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="rich-front-matter" class="slide level2">
+<h2>Rich front matter</h2>
+<p>In <code>index.qmd</code> of the project:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>index.qmd</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="index.qmd"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> A Randomized Trial of Rectal Indomethacin to Prevent Post-ERCP Pancreatitis</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> Reproduction</span></span>
+<span id="cb5-3"><a href=""></a><span class="fu">authors</span><span class="kw">:</span></span>
+<span id="cb5-4"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> B. Joseph Elmunzer, M.D.</span></span>
+<span id="cb5-5"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-6"><a href=""></a><span class="at">    </span><span class="fu">roles</span><span class="kw">:</span><span class="at"> writing</span></span>
+<span id="cb5-7"><a href=""></a><span class="at">    </span><span class="fu">corresponding</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-8"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> James M. Scheiman, M.D.</span></span>
+<span id="cb5-9"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-10"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Glen A. Lehman, M.D.</span></span>
+<span id="cb5-11"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at">  Indiana University Medical Center</span></span>
+<span id="cb5-12"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Amitabh Chak, M.D.</span></span>
+<span id="cb5-13"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University Hospitals Case Medical Center</span></span>
+<span id="cb5-14"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Patrick Mosler, M.D., Ph.D.</span></span>
+<span id="cb5-15"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Kentucky Medical Center</span></span>
+<span id="cb5-16"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Peter D.R. Higgins, M.D., Ph.D.</span></span>
+<span id="cb5-17"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-18"><a href=""></a><span class="at">    </span><span class="fu">orcid</span><span class="kw">:</span><span class="at"> 0000-0003-1602-4341</span></span>
+<span id="cb5-19"><a href=""></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> phiggins@umich.edu</span></span>
+<span id="cb5-20"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Rodney A. Hayward, M.D.</span></span>
+<span id="cb5-21"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-22"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Joseph Romagnuolo, M.D.</span></span>
+<span id="cb5-23"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Medical University of South Carolina</span></span>
+<span id="cb5-24"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Grace H. Elta, M.D.</span></span>
+<span id="cb5-25"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-26"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Stuart Sherman, M.D.</span></span>
+<span id="cb5-27"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at">  Indiana University Medical Center</span></span>
+<span id="cb5-28"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Akbar K. Waljee, M.D.</span></span>
+<span id="cb5-29"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-30"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Aparna Repaka, M.D.</span></span>
+<span id="cb5-31"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University Hospitals Case Medical Center</span></span>
+<span id="cb5-32"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Matthew R. Atkinson, M.D.</span></span>
+<span id="cb5-33"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University Hospitals Case Medical Center</span></span>
+<span id="cb5-34"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Gregory A. Cote, M.D.</span></span>
+<span id="cb5-35"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at">  Indiana University Medical Center</span></span>
+<span id="cb5-36"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Richard S. Kwon, M.D.</span></span>
+<span id="cb5-37"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-38"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lee McHenry, M.D.</span></span>
+<span id="cb5-39"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at">  Indiana University Medical Center</span></span>
+<span id="cb5-40"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Cyrus R. Piraka, M.D.</span></span>
+<span id="cb5-41"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-42"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Erik J. Wamsteker, M.D.</span></span>
+<span id="cb5-43"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-44"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> James L. Watkins, M.D.</span></span>
+<span id="cb5-45"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at">  Indiana University Medical Center</span></span>
+<span id="cb5-46"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sheryl J. Korsnes, M.A.</span></span>
+<span id="cb5-47"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Michigan Medical Center</span></span>
+<span id="cb5-48"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Suzette E. Schmidt, B.S.N., C.C.R.P.</span></span>
+<span id="cb5-49"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at">  Indiana University Medical Center</span></span>
+<span id="cb5-50"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sarah M. Turner, B.S.</span></span>
+<span id="cb5-51"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Kentucky Medical Center</span></span>
+<span id="cb5-52"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sylvia Nicholson, C.C.R.C.</span></span>
+<span id="cb5-53"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> University of Kentucky Medical Center</span></span>
+<span id="cb5-54"><a href=""></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Evan L. Fogel, M.D.</span></span>
+<span id="cb5-55"><a href=""></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at">  Indiana University Medical Center</span></span>
+<span id="cb5-56"><a href=""></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
+<span id="cb5-57"><a href=""></a><span class="fu">abstract</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb5-58"><a href=""></a>  **BACKGROUND**</span>
+<span id="cb5-59"><a href=""></a>  Preliminary research suggests that rectally administered nonsteroidal antiinflammatory drugs may reduce the incidence of pancreatitis after endoscopic retrograde cholangiopancreatography (ERCP).</span>
+<span id="cb5-60"><a href=""></a>  </span>
+<span id="cb5-61"><a href=""></a>  **METHODS**</span>
+<span id="cb5-62"><a href=""></a>  In this multicenter, randomized, placebo-controlled, double-blind clinical trial, we assigned patients at elevated risk for post-ERCP pancreatitis to receive a single dose of rectal indomethacin or placebo immediately after ERCP. Patients were determined to be at high risk on the basis of validated patient- and procedure-related risk factors. The primary outcome was post-ERCP pancreatitis, which was defined as new upper abdominal pain, an elevation in pancreatic enzymes to at least three times the upper limit of the normal range 24 hours after the procedure, and hospitalization for at least 2 nights.</span>
+<span id="cb5-63"><a href=""></a>  </span>
+<span id="cb5-64"><a href=""></a>  **RESULTS**</span>
+<span id="cb5-65"><a href=""></a>  A total of 602 patients were enrolled and completed follow-up. The majority of patients (82%) had a clinical suspicion of sphincter of Oddi dysfunction. Post-ERCP pancreatitis developed in 27 of 295 patients (9.2%) in the indomethacin group and in 52 of 307 patients (16.9%) in the placebo group (P=0.005). Moderate-to-severe pancreatitis developed in 13 patients (4.4%) in the indomethacin group and in 27 patients (8.8%) in the placebo group (P=0.03).</span>
+<span id="cb5-66"><a href=""></a>  </span>
+<span id="cb5-67"><a href=""></a>  **CONCLUSIONS**</span>
+<span id="cb5-68"><a href=""></a>  Among patients at high risk for post-ERCP pancreatitis, rectal indomethacin significantly reduced the incidence of the condition. (Funded by the National Institutes of Health; ClinicalTrials.gov number, NCT00820612. opens in new tab.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="rich-front-matter-1" class="slide level2">
+<h2>Rich front matter</h2>
+<p>from source <span class="math inline">\(\rightarrow\)</span> only relevant / required metadata in manuscript:</p>
+
+<img data-src="images/manuscript-pdf.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="rich-front-matter-2" class="slide level2">
+<h2>Rich front matter</h2>
+<p>from source <span class="math inline">\(\rightarrow\)</span> only relevant / required metadata in manuscript:</p>
+
+<img data-src="images/manuscript-word.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="embedded-computations" class="slide level2">
+<h2>Embedded computations</h2>
+<iframe src="https://mine-cetinkaya-rundel.github.io/indo-rct//" title="A Randomized Trial of Rectal Indomethacin to Prevent Post-ERCP Pancreatitis" width="1100px" height="600px"></iframe>
+</section>
+<section id="everything-you-love" class="slide level2">
+<h2>Everything you love…</h2>
+<p>about authoring Quarto documents in RStudio</p>
+<p><br></p>
+<p><i class="fa-solid fa-laptop-code" aria-label="laptop-code"></i> Demo</p>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="quarto-manuscripts_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="quarto-manuscripts_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="quarto-manuscripts_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="quarto-manuscripts_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="quarto-manuscripts_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="quarto-manuscripts_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="quarto-manuscripts_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="quarto-manuscripts_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="quarto-manuscripts_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="quarto-manuscripts_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
